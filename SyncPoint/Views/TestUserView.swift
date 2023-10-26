@@ -13,12 +13,11 @@ struct TestUserView: View {
     var body: some View {
         let users = userRepository.users.sorted()
         
-        Text("THIS HAS BEEN BUILT SUCCESSFULLY, NOT FROZEN")
-        
         List {
             ForEach(users) { user in
-                Text("\(user.last_name)")
+                Text("\(user.last_name), \(user.first_name)")
             }
         }
+        .navigationTitle("Users")
     }
 }
