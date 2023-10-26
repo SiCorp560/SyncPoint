@@ -19,6 +19,7 @@ struct User: Identifiable, Comparable, Codable {
     //var picture: Image?
     var tbd_events: [Event]?
     var upcoming_events: [Event]?
+    var notifications: [String]?
 
   
     // MARK: Codable
@@ -31,6 +32,7 @@ struct User: Identifiable, Comparable, Codable {
         //case picture
         case tbd_events
         case upcoming_events
+        case notifications
     }
   
     // MARK: Comparable
