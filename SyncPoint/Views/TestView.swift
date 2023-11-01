@@ -1,17 +1,19 @@
 //
-//  TestUserView.swift
+//  TestView.swift
 //  SyncPoint
 //
-//  Created by Simon Corpuz on 10/24/23.
+//  Created by Simon Corpuz on 11/1/23.
 //
 
 import SwiftUI
 
-struct TestUserView: View {
+struct TestView: View {
     @ObservedObject var userRepository = UserRepository()
+    @ObservedObject var eventRepository = EventRepository()
     
     var body: some View {
         let users = userRepository.users.sorted()
+        let events = eventRepository.events.sorted()
         
         List {
             ForEach(users) { user in
@@ -19,5 +21,13 @@ struct TestUserView: View {
             }
         }
         .navigationTitle("Users")
+        
+        List {
+            ForEach(events) { event in
+                Text("\(event.name)")
+            }
+        }
+        .navigationTitle("Events")
     }
 }
+

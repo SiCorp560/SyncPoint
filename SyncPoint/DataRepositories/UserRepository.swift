@@ -34,4 +34,34 @@ class UserRepository: ObservableObject {
                 } ?? []
             }
     }
+    
+    // MARK: CRUD methods
+    func create(_ user: User) {
+        do {
+            let newUser = user
+            _ = try store.collection(path).addDocument(from: newUser)
+        } catch {
+            fatalError("Unable to add user: \(error.localizedDescription).")
+        }
+    }
+
+    func update(_ user: User) {
+        guard let userId = user.id else { return }
+        
+        do {
+            try store.collection(path).document(userId).setData(from: user)
+        } catch {
+            fatalError("Unable to update user: \(error.localizedDescription).")
+        }
+    }
+
+    func delete(_ user: User) {
+        guard let userId = user.id else { return }
+        
+        store.collection(path).document(userId).delete { error in
+            if let error = error {
+                print("Unable to remove user: \(error.localizedDescription)")
+            }
+        }
+    }
 }
