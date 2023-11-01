@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12B0BDE42AF2D71900BCB724 /* EventRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0BDE32AF2D71900BCB724 /* EventRepository.swift */; };
+		12B0BDE62AF2F80900BCB724 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0BDE52AF2F80800BCB724 /* TestView.swift */; };
+		12B0BDE82AF2F8DA00BCB724 /* AvailabilityRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0BDE72AF2F8DA00BCB724 /* AvailabilityRepository.swift */; };
 		12F9DB982AE87FED00B1EC0F /* SyncPointApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9DB972AE87FED00B1EC0F /* SyncPointApp.swift */; };
 		12F9DB9A2AE87FED00B1EC0F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9DB992AE87FED00B1EC0F /* ContentView.swift */; };
 		12F9DB9C2AE87FF300B1EC0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12F9DB9B2AE87FF300B1EC0F /* Assets.xcassets */; };
@@ -27,11 +30,13 @@
 		12F9DBC52AE886ED00B1EC0F /* Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9DBC42AE886ED00B1EC0F /* Availability.swift */; };
 		12F9DBC72AE887AF00B1EC0F /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9DBC62AE887AF00B1EC0F /* UserRepository.swift */; };
 		12F9DBC92AE8898B00B1EC0F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12F9DBC82AE8898B00B1EC0F /* GoogleService-Info.plist */; };
-		12F9DBCC2AE88AA800B1EC0F /* TestUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9DBCB2AE88AA800B1EC0F /* TestUserView.swift */; };
 		12F9DBD02AE9F05500B1EC0F /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9DBCF2AE9F05500B1EC0F /* Event.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		12B0BDE32AF2D71900BCB724 /* EventRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepository.swift; sourceTree = "<group>"; };
+		12B0BDE52AF2F80800BCB724 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		12B0BDE72AF2F8DA00BCB724 /* AvailabilityRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityRepository.swift; sourceTree = "<group>"; };
 		12F9DB942AE87FED00B1EC0F /* SyncPoint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SyncPoint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12F9DB972AE87FED00B1EC0F /* SyncPointApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncPointApp.swift; sourceTree = "<group>"; };
 		12F9DB992AE87FED00B1EC0F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -41,7 +46,6 @@
 		12F9DBC42AE886ED00B1EC0F /* Availability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Availability.swift; sourceTree = "<group>"; };
 		12F9DBC62AE887AF00B1EC0F /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		12F9DBC82AE8898B00B1EC0F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		12F9DBCB2AE88AA800B1EC0F /* TestUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserView.swift; sourceTree = "<group>"; };
 		12F9DBCF2AE9F05500B1EC0F /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,6 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				12F9DBC62AE887AF00B1EC0F /* UserRepository.swift */,
+				12B0BDE32AF2D71900BCB724 /* EventRepository.swift */,
+				12B0BDE72AF2F8DA00BCB724 /* AvailabilityRepository.swift */,
 			);
 			path = DataRepositories;
 			sourceTree = "<group>";
@@ -128,7 +134,7 @@
 		12F9DBCA2AE88A8C00B1EC0F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				12F9DBCB2AE88AA800B1EC0F /* TestUserView.swift */,
+				12B0BDE52AF2F80800BCB724 /* TestView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -222,9 +228,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				12F9DB9A2AE87FED00B1EC0F /* ContentView.swift in Sources */,
-				12F9DBCC2AE88AA800B1EC0F /* TestUserView.swift in Sources */,
+				12B0BDE42AF2D71900BCB724 /* EventRepository.swift in Sources */,
 				12F9DBC72AE887AF00B1EC0F /* UserRepository.swift in Sources */,
+				12B0BDE82AF2F8DA00BCB724 /* AvailabilityRepository.swift in Sources */,
 				12F9DB982AE87FED00B1EC0F /* SyncPointApp.swift in Sources */,
+				12B0BDE62AF2F80900BCB724 /* TestView.swift in Sources */,
 				12F9DBC52AE886ED00B1EC0F /* Availability.swift in Sources */,
 				12F9DBD02AE9F05500B1EC0F /* Event.swift in Sources */,
 				12F9DBC12AE8837600B1EC0F /* User.swift in Sources */,
