@@ -64,4 +64,9 @@ class UserRepository: ObservableObject {
             }
         }
     }
+    
+    // MARK: Filtering methods
+    func getByID(_ id: String) -> User? {
+        return self.users.filter{$0.id == id}.first
+    }
 }

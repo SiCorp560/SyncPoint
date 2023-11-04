@@ -10,24 +10,59 @@ import SwiftUI
 struct TestView: View {
     @ObservedObject var userRepository = UserRepository()
     @ObservedObject var eventRepository = EventRepository()
+    @ObservedObject var availabilityRepository = AvailabilityRepository()
     
     var body: some View {
         let users = userRepository.users.sorted()
         let events = eventRepository.events.sorted()
         
-        List {
-            ForEach(users) { user in
-                Text("\(user.last_name), \(user.first_name)")
-            }
+        if let user = users.first {
+            ScheduledEventsView(user: user)
         }
-        .navigationTitle("Users")
         
-        List {
-            ForEach(events) { event in
-                Text("\(event.name)")
-            }
-        }
-        .navigationTitle("Events")
+//        ForEach(users) { user in
+//            if let unwrapID = user.id {
+//                let ID = print(unwrapID)
+//            }
+//            let lastName = print(user.last_name)
+//            let firstName = print(user.first_name)
+//            let email = print(user.email)
+//            let phone = print(user.phone)
+//            
+//            let userEvent = user.tbd_events[0]
+//            let getEvent = eventRepository.getByID(userEvent)
+//            if let z = getEvent {
+//                let eventName = print(z.name)
+//                let eventDescription = print(z.description)
+//                let eventDatespan = print(z.datespan)
+//                let eventParticipants = print(z.participants)
+//                let eventCommon = print(z.common_times)
+//                let eventFinal = print(z.final_meeting_time)
+//                let eventHost = print(z.host)
+//            }
+//            
+//            ForEach{user.tbd_events { tbd_event in
+//                let e = print(tbd_event)
+//            }
+//            
+//            let x = print("+++")
+//        }
+        
+//        Text("NOT FROZEN")
+//
+//        List {
+//            ForEach(users) { user in
+//                Text("\(user.last_name), \(user.first_name)")
+//            }
+//        }
+//        .navigationTitle("Users")
+//        
+//        List {
+//            ForEach(events) { event in
+//                Text("\(event.name)")
+//            }
+//        }
+//        .navigationTitle("Events")
     }
 }
 

@@ -10,6 +10,12 @@
 		12B0BDE42AF2D71900BCB724 /* EventRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0BDE32AF2D71900BCB724 /* EventRepository.swift */; };
 		12B0BDE62AF2F80900BCB724 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0BDE52AF2F80800BCB724 /* TestView.swift */; };
 		12B0BDE82AF2F8DA00BCB724 /* AvailabilityRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0BDE72AF2F8DA00BCB724 /* AvailabilityRepository.swift */; };
+		12B0BDEF2AF5E1F500BCB724 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0BDEE2AF5E1F500BCB724 /* UserViewModel.swift */; };
+		12B0BDF12AF6171500BCB724 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0BDF02AF6171500BCB724 /* EventViewModel.swift */; };
+		12B0BDF32AF6178E00BCB724 /* AvailabilityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0BDF22AF6178E00BCB724 /* AvailabilityViewModel.swift */; };
+		12B0BDF72AF61BE200BCB724 /* EventDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0BDF62AF61BE200BCB724 /* EventDetailsView.swift */; };
+		12B0BDFB2AF6B88900BCB724 /* EventRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0BDFA2AF6B88800BCB724 /* EventRowView.swift */; };
+		12B0BDFD2AF6CAA600BCB724 /* ScheduledEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0BDFC2AF6CAA600BCB724 /* ScheduledEventsView.swift */; };
 		12F9DB982AE87FED00B1EC0F /* SyncPointApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9DB972AE87FED00B1EC0F /* SyncPointApp.swift */; };
 		12F9DB9A2AE87FED00B1EC0F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9DB992AE87FED00B1EC0F /* ContentView.swift */; };
 		12F9DB9C2AE87FF300B1EC0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12F9DB9B2AE87FF300B1EC0F /* Assets.xcassets */; };
@@ -37,6 +43,12 @@
 		12B0BDE32AF2D71900BCB724 /* EventRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepository.swift; sourceTree = "<group>"; };
 		12B0BDE52AF2F80800BCB724 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		12B0BDE72AF2F8DA00BCB724 /* AvailabilityRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityRepository.swift; sourceTree = "<group>"; };
+		12B0BDEE2AF5E1F500BCB724 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		12B0BDF02AF6171500BCB724 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
+		12B0BDF22AF6178E00BCB724 /* AvailabilityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityViewModel.swift; sourceTree = "<group>"; };
+		12B0BDF62AF61BE200BCB724 /* EventDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsView.swift; sourceTree = "<group>"; };
+		12B0BDFA2AF6B88800BCB724 /* EventRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRowView.swift; sourceTree = "<group>"; };
+		12B0BDFC2AF6CAA600BCB724 /* ScheduledEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledEventsView.swift; sourceTree = "<group>"; };
 		12F9DB942AE87FED00B1EC0F /* SyncPoint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SyncPoint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12F9DB972AE87FED00B1EC0F /* SyncPointApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncPointApp.swift; sourceTree = "<group>"; };
 		12F9DB992AE87FED00B1EC0F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,6 +84,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		12B0BDE92AF4208300BCB724 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				12B0BDEE2AF5E1F500BCB724 /* UserViewModel.swift */,
+				12B0BDF02AF6171500BCB724 /* EventViewModel.swift */,
+				12B0BDF22AF6178E00BCB724 /* AvailabilityViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		12F9DB8B2AE87FED00B1EC0F = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +113,7 @@
 		12F9DB962AE87FED00B1EC0F /* SyncPoint */ = {
 			isa = PBXGroup;
 			children = (
+				12B0BDE92AF4208300BCB724 /* ViewModels */,
 				12F9DBCA2AE88A8C00B1EC0F /* Views */,
 				12F9DBC82AE8898B00B1EC0F /* GoogleService-Info.plist */,
 				12F9DBBF2AE8833600B1EC0F /* DataRepositories */,
@@ -135,6 +158,9 @@
 			isa = PBXGroup;
 			children = (
 				12B0BDE52AF2F80800BCB724 /* TestView.swift */,
+				12B0BDF62AF61BE200BCB724 /* EventDetailsView.swift */,
+				12B0BDFA2AF6B88800BCB724 /* EventRowView.swift */,
+				12B0BDFC2AF6CAA600BCB724 /* ScheduledEventsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -229,12 +255,18 @@
 			files = (
 				12F9DB9A2AE87FED00B1EC0F /* ContentView.swift in Sources */,
 				12B0BDE42AF2D71900BCB724 /* EventRepository.swift in Sources */,
+				12B0BDFD2AF6CAA600BCB724 /* ScheduledEventsView.swift in Sources */,
 				12F9DBC72AE887AF00B1EC0F /* UserRepository.swift in Sources */,
+				12B0BDF12AF6171500BCB724 /* EventViewModel.swift in Sources */,
+				12B0BDEF2AF5E1F500BCB724 /* UserViewModel.swift in Sources */,
 				12B0BDE82AF2F8DA00BCB724 /* AvailabilityRepository.swift in Sources */,
 				12F9DB982AE87FED00B1EC0F /* SyncPointApp.swift in Sources */,
 				12B0BDE62AF2F80900BCB724 /* TestView.swift in Sources */,
+				12B0BDFB2AF6B88900BCB724 /* EventRowView.swift in Sources */,
 				12F9DBC52AE886ED00B1EC0F /* Availability.swift in Sources */,
+				12B0BDF32AF6178E00BCB724 /* AvailabilityViewModel.swift in Sources */,
 				12F9DBD02AE9F05500B1EC0F /* Event.swift in Sources */,
+				12B0BDF72AF61BE200BCB724 /* EventDetailsView.swift in Sources */,
 				12F9DBC12AE8837600B1EC0F /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

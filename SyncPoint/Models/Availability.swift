@@ -8,13 +8,13 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-struct Availability: Identifiable, Comparable, Codable {
+struct Availability: Identifiable, Codable { //Comparable
     
     // MARK: Fields
     @DocumentID var id: String?
-    var user: User?
-    var event: Event?
-    var times: [Date]?
+    var user: String
+    var event: String
+    var times: [Date]
     var indicated: Bool
 
 
@@ -27,14 +27,14 @@ struct Availability: Identifiable, Comparable, Codable {
         case indicated
     }
   
-    // MARK: Comparable
-    static func ==(first: Availability, second: Availability) -> Bool {
-        return first.user == second.user && first.event == second.event
-    }
-  
-    static func <(first: Availability, second: Availability) -> Bool {
-        return first.event < second.event
-    }
+//    // MARK: Comparable
+//    static func ==(first: Availability, second: Availability) -> Bool {
+//        return first.user == second.user && first.event == second.event
+//    }
+//  
+//    static func <(first: Availability, second: Availability) -> Bool {
+//        return first.event < second.event
+//    }
   
 }
 

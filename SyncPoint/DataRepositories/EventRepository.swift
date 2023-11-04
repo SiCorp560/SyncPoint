@@ -64,4 +64,9 @@ class EventRepository: ObservableObject {
             }
         }
     }
+    
+    // MARK: Filtering methods
+    func getByID(_ id: String) -> Event? {
+        return self.events.filter{$0.id == id}.first
+    }
 }
