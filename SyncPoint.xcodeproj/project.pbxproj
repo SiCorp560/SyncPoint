@@ -31,6 +31,10 @@
 		12F9DBC72AE887AF00B1EC0F /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9DBC62AE887AF00B1EC0F /* UserRepository.swift */; };
 		12F9DBC92AE8898B00B1EC0F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12F9DBC82AE8898B00B1EC0F /* GoogleService-Info.plist */; };
 		12F9DBD02AE9F05500B1EC0F /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9DBCF2AE9F05500B1EC0F /* Event.swift */; };
+		FD3D7B892AF5AED3004150AE /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3D7B882AF5AED3004150AE /* UserViewModel.swift */; };
+		FD3D7B8D2AF5AF07004150AE /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3D7B8C2AF5AF07004150AE /* EventViewModel.swift */; };
+		FD3D7B8F2AF5AF16004150AE /* AvailabilityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3D7B8E2AF5AF16004150AE /* AvailabilityViewModel.swift */; };
+		FD3D7B912AF6A9D0004150AE /* NewEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3D7B902AF6A9D0004150AE /* NewEventView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +51,10 @@
 		12F9DBC62AE887AF00B1EC0F /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		12F9DBC82AE8898B00B1EC0F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		12F9DBCF2AE9F05500B1EC0F /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		FD3D7B882AF5AED3004150AE /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		FD3D7B8C2AF5AF07004150AE /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
+		FD3D7B8E2AF5AF16004150AE /* AvailabilityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityViewModel.swift; sourceTree = "<group>"; };
+		FD3D7B902AF6A9D0004150AE /* NewEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +99,7 @@
 		12F9DB962AE87FED00B1EC0F /* SyncPoint */ = {
 			isa = PBXGroup;
 			children = (
+				FD3D7B872AF5AE94004150AE /* ViewModels */,
 				12F9DBCA2AE88A8C00B1EC0F /* Views */,
 				12F9DBC82AE8898B00B1EC0F /* GoogleService-Info.plist */,
 				12F9DBBF2AE8833600B1EC0F /* DataRepositories */,
@@ -135,8 +144,19 @@
 			isa = PBXGroup;
 			children = (
 				12B0BDE52AF2F80800BCB724 /* TestView.swift */,
+				FD3D7B902AF6A9D0004150AE /* NewEventView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		FD3D7B872AF5AE94004150AE /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FD3D7B882AF5AED3004150AE /* UserViewModel.swift */,
+				FD3D7B8C2AF5AF07004150AE /* EventViewModel.swift */,
+				FD3D7B8E2AF5AF16004150AE /* AvailabilityViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,10 +250,14 @@
 				12F9DB9A2AE87FED00B1EC0F /* ContentView.swift in Sources */,
 				12B0BDE42AF2D71900BCB724 /* EventRepository.swift in Sources */,
 				12F9DBC72AE887AF00B1EC0F /* UserRepository.swift in Sources */,
+				FD3D7B8D2AF5AF07004150AE /* EventViewModel.swift in Sources */,
+				FD3D7B892AF5AED3004150AE /* UserViewModel.swift in Sources */,
 				12B0BDE82AF2F8DA00BCB724 /* AvailabilityRepository.swift in Sources */,
 				12F9DB982AE87FED00B1EC0F /* SyncPointApp.swift in Sources */,
+				FD3D7B912AF6A9D0004150AE /* NewEventView.swift in Sources */,
 				12B0BDE62AF2F80900BCB724 /* TestView.swift in Sources */,
 				12F9DBC52AE886ED00B1EC0F /* Availability.swift in Sources */,
+				FD3D7B8F2AF5AF16004150AE /* AvailabilityViewModel.swift in Sources */,
 				12F9DBD02AE9F05500B1EC0F /* Event.swift in Sources */,
 				12F9DBC12AE8837600B1EC0F /* User.swift in Sources */,
 			);

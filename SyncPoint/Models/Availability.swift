@@ -12,9 +12,9 @@ struct Availability: Identifiable, Comparable, Codable {
     
     // MARK: Fields
     @DocumentID var id: String?
-    var user: User?
-    var event: Event?
-    var times: [Date]?
+    var user: String
+    var event: String
+    var times: [Date]
     var indicated: Bool
 
 

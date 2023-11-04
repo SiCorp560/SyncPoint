@@ -17,9 +17,9 @@ struct User: Identifiable, Comparable, Codable {
     var email: String
     var phone: String
     //var picture: Image?
-    var tbd_events: [Event]?
-    var upcoming_events: [Event]?
-    var notifications: [String]?
+    var tbd_events: [String]
+    var upcoming_events: [String]
+    var notifications: [String]
 
   
     // MARK: Codable
