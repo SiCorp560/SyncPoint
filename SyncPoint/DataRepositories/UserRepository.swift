@@ -19,9 +19,11 @@ class UserRepository: ObservableObject {
     
     init() {
         self.get()
+        print("Success in get")
     }
     
     func get() {
+      print("running get")
         store.collection(path)
             .addSnapshotListener { querySnapshot, error in
                 if let error = error {
@@ -32,6 +34,7 @@ class UserRepository: ObservableObject {
                 self.users = querySnapshot?.documents.compactMap { document in
                     try? document.data(as: User.self)
                 } ?? []
+              print("Success", self.users)
             }
     }
     
@@ -64,4 +67,9 @@ class UserRepository: ObservableObject {
             }
         }
     }
+  
+  // MARK: Filtering methods
+     func getByID(_ id: String) -> User? {
+         return self.users.filter{$0.id == id}.first
+     }
 }

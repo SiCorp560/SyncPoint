@@ -64,4 +64,8 @@ class EventRepository: ObservableObject {
             }
         }
     }
+  
+  func getByID(_ id: String) -> Event? {
+          return self.events.filter{$0.id == id}.first
+      }
 }
