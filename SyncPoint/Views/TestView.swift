@@ -14,14 +14,10 @@ struct TestView: View {
   
     var body: some View {
       let availabilities = availabilityRespository.availabilities
-      ForEach(availabilities) { availability in
-        let event = print(availability.event)
-        let indicated = print(availability.indicated)
-        let times = print(availability.times)
-        
+      let users = userRepository.users
+      ForEach(users) { user in
+        let firstName = print(user.first_name)
       }
-      let firstUser = userRepository.users[0]
-      NewEventView(currentUser:firstUser)
       Text("Hello")
 
 //        let users = userRepository.users.sorted()

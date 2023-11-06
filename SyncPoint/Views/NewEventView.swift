@@ -16,12 +16,8 @@ struct NewEventView: View {
   
   @State private var name = ""
   @State private var description = ""
-  @State private var participants = [User?]()
-  @State private var earliestDate = Date()
-  @State private var latestDate = Date()
-  @State private var datespan = ["start": Date(), "end": Date()]
-  //@State private var common_times = [Date()]
-  
+  @State private var participants = [String?]()
+  @State private var earliest_date = Date()
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
@@ -31,24 +27,22 @@ struct NewEventView: View {
     if name.isEmpty { return false }
     if description.isEmpty { return false }
     if participants.isEmpty { return false }
-    if datespan.isEmpty { return false }
+    //if earliest_date == nil { return false }
     return true
   }
     
   private func addEvent() {
     // add the event to the events repository
-    let event = Event(name:name, description: description, participants: participants, datespan:datespan, host: currentUser)
-    participants.append(currentUser)
+    let event = Event(name:name, description: description, participants: participants, earliest_date:earliest_date, host: currentUser.id)
+    participants.append(currentUser.id)
     eventViewModel.add(event, participants)
   }
   
   private func clearFields() {
     name = ""
     description = ""
-    participants = [User?]()
-    earliestDate = Date()
-    latestDate = Date()
-    datespan = ["start": Date(), "end": Date()]
+    participants = [String?]()
+    earliest_date = Date()
   }
 }
 
