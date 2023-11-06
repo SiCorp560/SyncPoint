@@ -34,15 +34,14 @@ struct EventDetailsView: View {
                 .font(.title)
             
             // MARK: Final meeting date and time
-            if let startDate = event.final_meeting_time["start"], let endDate = event.final_meeting_time["end"] {
-                let newEndDate = calendar.date(byAdding: .minute, value: 1, to: endDate)!
+            if let startDate = event.final_meeting_start, let endDate = event.final_meeting_end {
                 HStack{
                     Image(systemName: "calendar")
                     Text(startDate.formatted(date: .abbreviated, time: .omitted))
                 }
                 HStack{
                     Image(systemName: "clock")
-                    Text("\(startDate.formatted(date: .omitted, time: .shortened)) - \(newEndDate.formatted(date: .omitted, time: .shortened))")
+                    Text("\(startDate.formatted(date: .omitted, time: .shortened)) - \(endDate.formatted(date: .omitted, time: .shortened))")
                 }
             } else {
                 HStack{

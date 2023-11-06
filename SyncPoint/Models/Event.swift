@@ -15,9 +15,9 @@ struct Event: Identifiable, Comparable, Codable {
     var name: String
     var description: String
     var participants: [String]
-    var datespan: [String: Date]
-    //var common_times: [Date]
-    var final_meeting_time: [String: Date]
+    var earliest_date: Date
+    var final_meeting_start: Date?
+    var final_meeting_end: Date?
     var host: String
 
 
@@ -27,9 +27,9 @@ struct Event: Identifiable, Comparable, Codable {
         case name
         case description
         case participants
-        case datespan
-        //case common_times
-        case final_meeting_time
+        case earliest_date
+        case final_meeting_start
+        case final_meeting_end
         case host
     }
   

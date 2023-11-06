@@ -16,8 +16,8 @@ struct TestView: View {
         let users = userRepository.users.sorted()
         let events = eventRepository.events.sorted()
         
-        if let user = users.first {
-            ScheduledEventsView(user: user)
+        if let user = users.first, let event = events.first {
+            SelectAvailabilityView(user: user, event: event)
         }
         
 //        ForEach(users) { user in
@@ -34,17 +34,10 @@ struct TestView: View {
 //            if let z = getEvent {
 //                let eventName = print(z.name)
 //                let eventDescription = print(z.description)
-//                let eventDatespan = print(z.datespan)
 //                let eventParticipants = print(z.participants)
-//                let eventCommon = print(z.common_times)
-//                let eventFinal = print(z.final_meeting_time)
 //                let eventHost = print(z.host)
 //            }
-//            
-//            ForEach{user.tbd_events { tbd_event in
-//                let e = print(tbd_event)
-//            }
-//            
+//
 //            let x = print("+++")
 //        }
         

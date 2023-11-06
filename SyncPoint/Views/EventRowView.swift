@@ -16,7 +16,7 @@ struct EventRowView: View {
         HStack {
             VStack {
                 // MARK: Final meeting date
-                if let startDate = event.final_meeting_time["start"] {
+                if let startDate = event.final_meeting_start {
                     Text(startDate.formatted(date: .abbreviated, time: .omitted))
                 } else {
                     Text("TBD")
@@ -36,7 +36,7 @@ struct EventRowView: View {
                 // MARK: Final meeting time
                 HStack {
                     Image(systemName: "clock")
-                    if let startDate = event.final_meeting_time["start"] {
+                    if let startDate = event.final_meeting_start {
                         Text(startDate.formatted(date: .abbreviated, time: .omitted))
                     } else {
                         Text("TBD")
