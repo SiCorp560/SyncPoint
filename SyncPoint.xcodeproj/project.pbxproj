@@ -17,6 +17,7 @@
 		12B0BDFB2AF6B88900BCB724 /* EventRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0BDFA2AF6B88800BCB724 /* EventRowView.swift */; };
 		12B0BDFD2AF6CAA600BCB724 /* ScheduledEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0BDFC2AF6CAA600BCB724 /* ScheduledEventsView.swift */; };
 		12B0BDFF2AF7260500BCB724 /* SelectAvailabilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0BDFE2AF7260400BCB724 /* SelectAvailabilityView.swift */; };
+		12B0BE012AF8B19A00BCB724 /* PeopleTimesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0BE002AF8B19A00BCB724 /* PeopleTimesView.swift */; };
 		12F9DB982AE87FED00B1EC0F /* SyncPointApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9DB972AE87FED00B1EC0F /* SyncPointApp.swift */; };
 		12F9DB9A2AE87FED00B1EC0F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9DB992AE87FED00B1EC0F /* ContentView.swift */; };
 		12F9DB9C2AE87FF300B1EC0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12F9DB9B2AE87FF300B1EC0F /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 		12B0BDFA2AF6B88800BCB724 /* EventRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRowView.swift; sourceTree = "<group>"; };
 		12B0BDFC2AF6CAA600BCB724 /* ScheduledEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledEventsView.swift; sourceTree = "<group>"; };
 		12B0BDFE2AF7260400BCB724 /* SelectAvailabilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAvailabilityView.swift; sourceTree = "<group>"; };
+		12B0BE002AF8B19A00BCB724 /* PeopleTimesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTimesView.swift; sourceTree = "<group>"; };
 		12F9DB942AE87FED00B1EC0F /* SyncPoint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SyncPoint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12F9DB972AE87FED00B1EC0F /* SyncPointApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncPointApp.swift; sourceTree = "<group>"; };
 		12F9DB992AE87FED00B1EC0F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				12B0BDFA2AF6B88800BCB724 /* EventRowView.swift */,
 				12B0BDFC2AF6CAA600BCB724 /* ScheduledEventsView.swift */,
 				12B0BDFE2AF7260400BCB724 /* SelectAvailabilityView.swift */,
+				12B0BE002AF8B19A00BCB724 /* PeopleTimesView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				12F9DB982AE87FED00B1EC0F /* SyncPointApp.swift in Sources */,
 				12B0BDE62AF2F80900BCB724 /* TestView.swift in Sources */,
 				12B0BDFB2AF6B88900BCB724 /* EventRowView.swift in Sources */,
+				12B0BE012AF8B19A00BCB724 /* PeopleTimesView.swift in Sources */,
 				12F9DBC52AE886ED00B1EC0F /* Availability.swift in Sources */,
 				12B0BDF32AF6178E00BCB724 /* AvailabilityViewModel.swift in Sources */,
 				12F9DBD02AE9F05500B1EC0F /* Event.swift in Sources */,

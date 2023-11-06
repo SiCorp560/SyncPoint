@@ -16,8 +16,9 @@ struct TestView: View {
         let users = userRepository.users.sorted()
         let events = eventRepository.events.sorted()
         
-        if let user = users.first, let event = events.first {
-            SelectAvailabilityView(user: user, event: event)
+        if let user = users.last, let event = events.first {
+            //SelectAvailabilityView(user: user, event: event)
+            PeopleTimesView(event: event)
         }
         
 //        ForEach(users) { user in
