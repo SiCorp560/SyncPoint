@@ -12,14 +12,49 @@ struct ContentView: View {
   @ObservedObject var eventRepository = EventRepository()
   @ObservedObject var availabilityRepository = AvailabilityRepository()
   
-  var body: some View {
-    let users = userRepository.users.sorted()
-    let events = eventRepository.events.sorted()
-    
-    if let user = users.first {
-      ScheduledEventsView(user: user)
+  
+  //  NewEventView //
+  
+    var body: some View {
+      let user = userRepository.getByID("8yNDXAvEKcxEZCDUu74A")
+  
+      if let unwrappedUser = user {
+        let userViewModel = UserViewModel(user: unwrappedUser)
+        NewEventView(userViewModel: userViewModel, currentUser: unwrappedUser)
+      }
     }
-  }
+  
+  
+  //  ScheduledEventsView //
+  
+  //  var body: some View {
+  //      let users = userRepository.users.sorted()
+  //      let events = eventRepository.events.sorted()
+  //
+  //      if let user = users.first {
+  //        ScheduledEventsView(user: user)
+  //      }
+  //    }
+//  var body: some View {
+//    let user = userRepository.getByID("8yNDXAvEKcxEZCDUu74A")
+//    
+//    if let unwrappedUser = user {
+//      ScheduledEventsView(user: unwrappedUser)
+//    }
+//  }
+  
+  //  EventDetialsView //
+  
+  //  var body: some View {
+  //      let event = eventRepository.getByID("H9cCp7JrENa0s4E5djzn")
+  //
+  //      if let unwrappedEvent = event {
+  //        EventDetailsView(event: unwrappedEvent)
+  //      }
+  //    }
+  //
+  
+  
 }
 
 #Preview {

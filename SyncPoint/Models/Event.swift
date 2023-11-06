@@ -14,10 +14,11 @@ struct Event: Identifiable, Comparable, Codable {
     @DocumentID var id: String?
     var name: String
     var description: String
-    var participants: [String]
-    var datespan: [String: Date]
-    var final_meeting_time: [String: Date]
-    var host: String
+    var participants: [String?]
+    var earliest_date: Date
+    var final_meeting_start: Date?
+    var final_meeting_end: Date?
+    var host: String?
 
 
     // MARK: Codable
@@ -26,9 +27,9 @@ struct Event: Identifiable, Comparable, Codable {
         case name
         case description
         case participants
-        case datespan
-        //case common_times
-        case final_meeting_time
+        case earliest_date
+        case final_meeting_start
+        case final_meeting_end
         case host
     }
   

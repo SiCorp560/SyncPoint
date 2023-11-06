@@ -25,8 +25,7 @@ struct SelectAvailabilityView: View {
             .padding()
           
   
-        
-        
+      
         
         VStack (alignment: .trailing){
           

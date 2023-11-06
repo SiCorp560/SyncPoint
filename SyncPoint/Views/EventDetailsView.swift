@@ -37,7 +37,7 @@ struct EventDetailsView: View {
           .padding()
         
       
-        if let startDate = event.final_meeting_time["start"], let endDate = event.final_meeting_time["end"] {
+        if let startDate = event.final_meeting_start, let endDate = event.final_meeting_end {
           let newEndDate = calendar.date(byAdding: .minute, value: 1, to: endDate)!
           
           VStack(alignment: .leading){
@@ -97,7 +97,7 @@ struct EventDetailsView: View {
         
           HStack{
             ForEach(event.participants, id: \.self) { name in
-              Text(name)
+              Text(name ?? "user")
                 .frame(width: 55, height: 35, alignment: .center)
                 .padding()
                 .background(
@@ -138,23 +138,20 @@ struct EventDetailsView: View {
   }
 
 
-extension Event {
-    static var mock: Event {
-        return Event(
-            id: "1",
-            name: "Mentor Meeting",
-            description: "Get feedback on sprint 3, ask app design suggestions and talk about database.",
-            
-            participants: ["Ammar","Simon","Ahmad","Matt"],
-            
-            datespan: ["start": Date(), "end": Date().addingTimeInterval(3600)],
-            
-            final_meeting_time: ["start": Date(), "end": Date().addingTimeInterval(3600)],
-            
-            host: "Ammar"
-        )
-    }
-}
-#Preview {
-  EventDetailsView(event: .mock)
-}
+//extension Event {
+//    static var mock: Event {
+//        return Event(
+//          id: "1",
+//          name: "Mentor Meeting",
+//          description: "Get feedback on sprint 3, ask app design suggestions and talk about database.",
+//          participants: ["Ammar", "Simon", "Ahmad", "Matt"],
+//          earliest_date: Date(),
+//          final_meeting_start: Date(),
+//          final_meeting_end: Date().addingTimeInterval(3600),
+//          host: "Ammar"
+//        )
+//    }
+//}
+//#Preview {
+//  EventDetailsView(event: .mock)
+//}

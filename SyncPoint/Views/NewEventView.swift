@@ -8,111 +8,146 @@ import SwiftUI
 
 struct NewEventView: View {
   
+  @State var searchField: String = ""
+  @State var displayedUsers = [User]()
+  
   @ObservedObject var userRepository = UserRepository()
   @ObservedObject var eventViewModel = EventViewModel()
-  //var currentUser: User
+  @ObservedObject var userViewModel: UserViewModel
+  
+  var currentUser: User
+  
   
   @State private var name: String = ""
   @State private var description: String = ""
-  @State private var earliestDate: Date = Date()
-  @State private var latestDate: Date = Date()
-  //@State private var participants = [User?]
-  //@State private var datespan = ["start": Date(), "end": Date()]
-  //@State private var common_times = [Date()]
+  @State private var earliest_date: Date = Date()
+  @State private var participants: [String?] = []
+  
   
   
   var body: some View {
-    NavigationView {
-      Form {
-        Section(header: Text("Event Details")
-          .foregroundColor(.black))
-        {
+      let binding = Binding<String>(get: {
+          self.searchField
+      }, set: {
+          self.searchField = $0
+          self.userViewModel.search(searchText: self.searchField)
+          self.displayUsers()
+      })
+      
+      NavigationView {
+          Form {
+              Section(header: Text("Event Details").foregroundColor(.black)) {
+                  
+                TextField("Add title", text: $name)
+                  .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+                  .background(Color.green.opacity(0.1))
+                  .cornerRadius(8)
+                
+                
+                  TextField("Add Description", text: $description)
+                  .padding()
+                  .background(Color.green.opacity(0.1))
+                  .cornerRadius(8)
+              }
+            
+            Section(header: Text("Select range of possible dates").foregroundColor(.black)) {
+                DatePicker("Earliest:", selection: $earliest_date, displayedComponents: .date)
+                .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+                .background(Color.green.opacity(0.1))
+                .cornerRadius(8)
+            }
+            
+            
+            
+            Section(header: Text("Add Participants").foregroundColor(.black)) {
+                  TextField("Search", text: $searchField)
+                      .onChange(of: searchField) { newValue in
+                          // When searchField changes, call the search function of the view model.
+                          userViewModel.search(searchText: newValue)
+                      }
           
-            TextField("Add title", text: $name)
-            .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-            .background(Color.green.opacity(0.1))
-            .cornerRadius(8)
-          
-          
-            TextField("Add Description", text: $description)
-            .padding()
-            .background(Color.green.opacity(0.1))
-            .cornerRadius(8)
-        }
-        
-        Section(header: Text("Select range of possible dates")
-          .foregroundColor(.black)) {
-          
-          DatePicker("Earliest:", selection: $earliestDate, displayedComponents: .date)
-              .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-              .background(Color.green.opacity(0.1))
-              .cornerRadius(8)
-          
-          DatePicker("Latest:", selection: $latestDate, displayedComponents: .date)
-            .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-            .background(Color.green.opacity(0.1))
-            .cornerRadius(8)
-        }
-        
-        
-        
-        Section (header: Text("Add People").foregroundColor(.black)) {
-          Button("Search phone contacts") {
-            // Handle the finish action here
+
+                  List(displayedUsers) { user in
+                      Text(user.first_name)
+                          .onTapGesture {
+                              if let userId = user.id {
+                                  self.participants.append(userId)
+                              }
+                          }
+                  }
+              }
+              
+//
+//              Section(header: Text("Add People")) {
+//                  TextField("Search", text: binding)
+//                  List(displayedUsers, id: \.id) { user in
+//                      Text(user.first_name)
+//                          .onTapGesture {
+//                              if let userId = user.id {
+//                                  self.participants.append(userId)
+//                              }
+//                          }
+//                  }
+//              }
+              
+              Section(header: Text("Participants").foregroundColor(.black)) {
+                  List(participants.compactMap { $0 }, id: \.self) { userId in
+                      if let user = userRepository.getByID(userId) {
+                          Text(user.first_name)
+                      } else {
+                          Text("Unknown user")
+                      }
+                  }
+              }
+              
+              if self.isValidEvent() {
+                  Button("Finish") {
+                      addEvent()
+                      clearFields()
+                  }.padding()
+                  .foregroundColor(.white)
+                  .background(Color.green)
+                  .cornerRadius(15)
+                  .frame(maxWidth: .infinity, alignment: .center)
+              }
           }
-          .frame(maxWidth: .infinity, alignment: .center)
-          .padding()
-          .background(Color.green.opacity(0.1))
-          .cornerRadius(8)
-          .foregroundColor(.black)
-        }
-        
-        
-        Button(action: {}) {
-          Text("Finish")
-            .foregroundColor(.white)
-        }
-        .padding()
-        .background(Color.green)
-        .cornerRadius(15)
-        .frame(maxWidth: .infinity, alignment: .center)
-        
+          .navigationBarTitle("New Event", displayMode: .inline)
       }
-      .navigationBarTitle("New Event", displayMode: .inline)
+      .onAppear {
+          self.displayUsers()  // Initial display of users
+      }
+  }
+
+
+  
+    private func isValidEvent() -> Bool {
+        if name.isEmpty { return false }
+        if description.isEmpty { return false }
+        //if participants.isEmpty { return false }
+        if earliest_date == nil { return false }
+        return true
+      }
+  
+      private func addEvent() {
+        // add the event to the events repository
+        let event = Event(name:name, description: description, participants: participants, earliest_date: earliest_date, host: currentUser.id)
+        participants.append(currentUser.id)
+        eventViewModel.add(event, participants)
+      }
+  
+      private func clearFields() {
+        name = ""
+        description = ""
+        participants = [String?]()
+        earliest_date = Date()
+      }
+  
+      func displayUsers() {
+        if searchField == "" {
+          displayedUsers = userViewModel.users
+        } else {
+          displayedUsers = userViewModel.filteredUsers
+        }
+      }
     }
-  }
-  
-  //  private func isValidEvent() -> Bool {
-  //      if name.isEmpty { return false }
-  //      if description.isEmpty { return false }
-  //      if participants.isEmpty { return false }
-  //      if datespan.isEmpty { return false }
-  //      return true
-  //    }
-  //
-  //    private func addEvent() {
-  //      // add the event to the events repository
-  //      let event = Event(name:name, description: description, participants: participants, datespan:datespan, host: currentUser)
-  //      //participants.append(currentUser)
-  //      eventViewModel.add(event, participants)
-  //    }
-  //
-  //    private func clearFields() {
-  //      name = ""
-  //      description = ""
-  //      participants = [User?]()
-  //      earliestDate = Date()
-  //      latestDate = Date()
-  //      datespan = ["start": Date(), "end": Date()]
-  //    }
-  //  }
-  
-}
-
-
-struct NewEventView_Previews: PreviewProvider {
-  static var previews: some View {
-    NewEventView()
-  }
-}
 

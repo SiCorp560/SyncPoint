@@ -10,6 +10,16 @@ import Combine
 
 class UserViewModel: ObservableObject, Identifiable {
 
+//  // variable for search functionality
+//  @Published var searchQuery = ""
+//  @Published var searchResults: [User] = []
+//  private var searchCancellable: AnyCancellable?
+  
+  @Published var users: [User] = []
+  @Published var searchText: String = ""
+  @Published var filteredUsers: [User] = []
+
+  
   private let userRepository = UserRepository()
   @Published var user: User
   private var cancellables: Set<AnyCancellable> = []
@@ -21,8 +31,15 @@ class UserViewModel: ObservableObject, Identifiable {
           .compactMap { $0.id }
           .assign(to: \.id, on: self)
           .store(in: &cancellables)
+    
   }
-
+  
+  func search(searchText: String) {
+        self.filteredUsers = self.users.filter { user in
+          return self.user.first_name.lowercased().contains(searchText.lowercased())
+        }
+      }
+  
   func update(user: User) {
       userRepository.update(user)
   }

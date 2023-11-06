@@ -22,7 +22,7 @@ struct ScheduledRowView: View {
                 HStack{
                   Image(systemName: "calendar")
                   
-                  Text(event.final_meeting_time["start"]?.formatted(date: .abbreviated, time: .omitted) ?? "TBD")
+                  Text(event.final_meeting_start?.formatted(date: .abbreviated, time: .omitted) ?? "TBD")
                     .font(.caption)
                     .foregroundColor(.black)
                 }

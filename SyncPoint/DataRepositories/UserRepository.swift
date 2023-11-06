@@ -19,11 +19,9 @@ class UserRepository: ObservableObject {
     
     init() {
         self.get()
-        print("Success in get")
     }
     
     func get() {
-      print("running get")
         store.collection(path)
             .addSnapshotListener { querySnapshot, error in
                 if let error = error {
