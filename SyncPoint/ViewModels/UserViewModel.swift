@@ -15,9 +15,9 @@ class UserViewModel: ObservableObject, Identifiable {
 //  @Published var searchResults: [User] = []
 //  private var searchCancellable: AnyCancellable?
   
-  @Published var users: [User] = []
+  @Published var users: [UserRepository] = []
   @Published var searchText: String = ""
-  @Published var filteredUsers: [User] = []
+  @Published var filteredUsers: [UserRepository] = []
 
   
   private let userRepository = UserRepository()

@@ -9,7 +9,7 @@ import SwiftUI
 struct NewEventView: View {
   
   @State var searchField: String = ""
-  @State var displayedUsers = [User]()
+  @State var displayedUsers = [UserRepository]()
   
   @ObservedObject var userRepository = UserRepository()
   @ObservedObject var eventViewModel = EventViewModel()
@@ -26,6 +26,9 @@ struct NewEventView: View {
   
   
   var body: some View {
+    
+      @State var displayedUsers = userRepository.users
+    
       let binding = Binding<String>(get: {
           self.searchField
       }, set: {
@@ -35,30 +38,37 @@ struct NewEventView: View {
       })
       
       NavigationView {
-          Form {
-              Section(header: Text("Event Details").foregroundColor(.black)) {
-                  
-                TextField("Add title", text: $name)
-                  .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-                  .background(Color.green.opacity(0.1))
-                  .cornerRadius(8)
-                
-                
-                  TextField("Add Description", text: $description)
-                  .padding()
-                  .background(Color.green.opacity(0.1))
-                  .cornerRadius(8)
-              }
+        Form {
+          Section(header: Text("Event Details").foregroundColor(.black)) {
             
-            Section(header: Text("Select range of possible dates").foregroundColor(.black)) {
-                DatePicker("Earliest:", selection: $earliest_date, displayedComponents: .date)
-                .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-                .background(Color.green.opacity(0.1))
-                .cornerRadius(8)
-            }
+            TextField("Add title", text: $name)
+              .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+              .background(Color.green.opacity(0.1))
+              .cornerRadius(8)
             
             
-            
+            TextField("Add Description", text: $description)
+              .padding()
+              .background(Color.green.opacity(0.1))
+              .cornerRadius(8)
+          }
+          
+          Section(header: Text("Select range of possible dates").foregroundColor(.black)) {
+            DatePicker("Earliest:", selection: $earliest_date, displayedComponents: .date)
+              .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+              .background(Color.green.opacity(0.1))
+              .cornerRadius(8)
+          }
+          
+          
+          
+//          List{ForEach(displayedUsers) { user in
+//            Text(user.first_name)
+//          }
+//          }
+
+          
+      
             Section(header: Text("Add Participants").foregroundColor(.black)) {
                   TextField("Search", text: $searchField)
                       .onChange(of: searchField) { newValue in
@@ -67,12 +77,16 @@ struct NewEventView: View {
                       }
           
 
-                  List(displayedUsers) { user in
+              List(displayedUsers) { user in
                       Text(user.first_name)
                           .onTapGesture {
-                              if let userId = user.id {
-                                  self.participants.append(userId)
+                            if let userId = user.id {
+                              if !participants.contains (userId) {
+                                self.participants.append(userId)
+                                displayedUsers.removeAll{$0.id == userId}
+                                
                               }
+                            }
                           }
                   }
               }
@@ -112,6 +126,7 @@ struct NewEventView: View {
               }
           }
           .navigationBarTitle("New Event", displayMode: .inline)
+
       }
       .onAppear {
           self.displayUsers()  // Initial display of users
@@ -123,14 +138,14 @@ struct NewEventView: View {
     private func isValidEvent() -> Bool {
         if name.isEmpty { return false }
         if description.isEmpty { return false }
-        //if participants.isEmpty { return false }
+        if participants.isEmpty { return false }
         if earliest_date == nil { return false }
         return true
       }
   
       private func addEvent() {
         // add the event to the events repository
-        let event = Event(name:name, description: description, participants: participants, earliest_date: earliest_date, host: currentUser.id)
+        let event = Event(name:name, description: description, participants: participants, earliest_date: earliest_date, final_meeting_start: Date(), final_meeting_end: Date(), host: currentUser.id)
         participants.append(currentUser.id)
         eventViewModel.add(event, participants)
       }
