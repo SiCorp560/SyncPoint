@@ -117,13 +117,22 @@ struct NewEventView: View {
               if self.isValidEvent() {
                   Button("Finish") {
                       addEvent()
-                      clearFields()
+                      //clearFields()
                   }.padding()
                   .foregroundColor(.white)
                   .background(Color.green)
                   .cornerRadius(15)
                   .frame(maxWidth: .infinity, alignment: .center)
               }
+          
+          Button("confirm") {
+            updateDB()
+            clearFields()
+          }.padding()
+          .foregroundColor(.white)
+          .background(Color.green)
+          .cornerRadius(15)
+          .frame(maxWidth: .infinity, alignment: .center)
           }
           .navigationBarTitle("New Event", displayMode: .inline)
 
@@ -163,6 +172,12 @@ struct NewEventView: View {
         } else {
           displayedUsers = userViewModel.filteredUsers
         }
+      }
+  
+      func updateDB() {
+        let event = Event(name:name, description: description, participants: participants, earliest_date: earliest_date, final_meeting_start: Date(), final_meeting_end: Date(), host: currentUser.id)
+        eventViewModel.updateDB(event, participants)
+    
       }
     }
 

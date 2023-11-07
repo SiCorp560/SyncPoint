@@ -17,11 +17,10 @@ class EventViewModel: ObservableObject {
   func add(_ event: Event, _ participants: [String?]) {
     // add the event to the event respository
     eventRepository.create(event)
-    eventRepository.events.append(event)
     
     
     // add the event to the tbd events of each participant(including host)
-    addToTBD(event, participants)
+    //addToTBD(event, participants)
 
 
     
@@ -29,26 +28,28 @@ class EventViewModel: ObservableObject {
     //addAvailabilityRecords(event, participants)
   }
   
-  func addToTBD(_ event: Event, _ participants: [String?]) {
+    
+  
+  func updateDB(_ event: Event, _ participants: [String?]) {
     eventRepository.get()
     var newEvents = eventRepository.events
-    print(newEvents.count)
-    for e in newEvents {
-      print(e)
-      print("----")
+    var thisEvent = newEvents.filter{ $0.name == event.name }.first
+    if let eventID = thisEvent?.getID() {
+      
+      var newParticipants = participants.compactMap { $0 }
+      let users = userResposirty.users
+      for participant in newParticipants {
+        var user = users.filter { $0.id == participant }.first
+        user?.tbd_events.append(eventID)
+        userResposirty.update(user!)
+      }
+      
+      for participant in newParticipants {
+        var availability = Availability(user: participant, event:eventID, times:[], indicated:false)
+        availabilityRepository.create(availability)
+      }
+      
     }
-    
-    // let newEventID =  need to save it to be able to use it below
-
-    
-//    var newParticipants = participants.compactMap { $0 }
-//    let users = userResposirty.users
-//    
-//    for participant in newParticipants {
-//      var user = users.filter { $0.id == participant }.first
-//      user?.tbd_events.append(newEventID ?? "-1")
-//      userResposirty.update(user!)
-//    }
   }
   
   

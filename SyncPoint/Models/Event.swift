@@ -42,4 +42,8 @@ struct Event: Identifiable, Comparable, Codable {
         return first.name < second.name
     }
   
+  public func getID() -> String? {
+      return self.id
+     }
+  
 }
