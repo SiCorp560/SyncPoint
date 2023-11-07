@@ -12,28 +12,52 @@ struct ScheduledEventsView: View {
     var user: User
     
     var body: some View {
-        // MARK: "To Be Scheduled" events
-        HStack {
-            Text("To Be Scheduled")
-            Button(action: {}) {
-                Image(systemName: "plus")
-            }
-        }
-        List {
-            ForEach(user.tbd_events.indices) {
-                if let event = eventRepository.getByID(self.user.tbd_events[$0]) {
-                    EventRowView(event: event)
+        VStack(alignment: .leading) {
+            // MARK: "To Be Scheduled" events
+            HStack {
+                Text("To Be Scheduled")
+                    .fontWeight(.bold)
+                    .font(.title3)
+                Spacer()
+                Button(action: {}) {
+                    Image(systemName: "plus")
+                        .foregroundColor(.white)
+                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                        .font(.title)
+                }
+                .padding()
+                .background(
+                    Circle()
+                        .fill(Color.green)
+                        .cornerRadius(20)
+                )
+            }.padding(EdgeInsets(top: 5, leading: 16, bottom: 5, trailing: 16))
+            List {
+                ForEach(user.tbd_events.indices) {
+                    if let event = eventRepository.getByID(self.user.tbd_events[$0]) {
+                        NavigationLink(destination: EventDetailsView(user: user, event: event)) {
+                            EventRowView(user: user, event: event)
+                        }
+                    }
                 }
             }
-        }
-        
-        Text("Upcoming")
-        List {
-            ForEach(user.upcoming_events.indices) {
-                if let event = eventRepository.getByID(self.user.upcoming_events[$0]) {
-                    EventRowView(event: event)
+            
+            // MARK: "Upcoming" events
+            Text("Upcoming")
+                .fontWeight(.bold)
+                .font(.title3)
+                .padding(EdgeInsets(top: 5, leading: 16, bottom: 5, trailing: 16))
+            List {
+                ForEach(user.upcoming_events.indices) {
+                    if let event = eventRepository.getByID(self.user.upcoming_events[$0]) {
+                        NavigationLink(destination: EventDetailsView(user: user, event: event)) {
+                            EventRowView(user: user, event: event)
+                        }
+                    }
                 }
             }
+            
+            Spacer()
         }
     }
 }
