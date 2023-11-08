@@ -7,60 +7,77 @@
 
 import SwiftUI
 
-
 struct ScheduledEventsView: View {
-    @ObservedObject var eventRepository = EventRepository()
-    var user: User
-    
+  @ObservedObject var eventRepository = EventRepository()
+  var user: User
+  
   var body: some View {
-    VStack(alignment: .leading) {
-      HStack {
-        Text("To be Scheduled Events")
-          .fontWeight(.bold)
-          .font(.title3)
+    NavigationView{
+      VStack {
+        VStack(alignment: .leading) {
+          // MARK: "To Be Scheduled" events
+          
+          HStack {
+            
+            Text("SYNCPOINT")
+              .fontWeight(.bold)
+              .font(.title)
+            
+            Spacer()
+            
+            NavigationLink(
+              destination: NewEventView(user: user),
+              label: {
+                Image(systemName: "plus")
+                  .padding()
+                  .foregroundColor(.white)
+                  .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                  .font(.title)
+                  .background(Circle().fill(Color.green).cornerRadius(15)
+                    .frame(width:60, height:60))
+                
+              })
+          }.padding()
+          
+          
+        }
+        
+        VStack (alignment: .leading, spacing: 10){
+          Text("To Be Scheduled")
+            .fontWeight(.bold)
+            .font(.title3)
+          
+          List {
+            ForEach(user.tbd_events.indices) {
+              if let event = eventRepository.getByID(self.user.tbd_events[$0]) {
+                NavigationLink(destination: EventDetailsView(user: user, event: event)) {
+                  ScheduledRowView(user: user, event: event)
+                }
+              }
+            }
+          }
+        }.padding()
+        
+        // MARK: "Upcoming" events
+        VStack (alignment: .leading, spacing: 10){
+          
+          Text("Upcoming")
+            .fontWeight(.bold)
+            .font(.title3)
+            .padding(EdgeInsets(top: 5, leading: 16, bottom: 5, trailing: 16))
+          
+          List {
+            ForEach(user.upcoming_events.indices) {
+              if let event = eventRepository.getByID(self.user.upcoming_events[$0]) {
+                NavigationLink(destination: EventDetailsView(user: user, event: event)) {
+                  ScheduledRowView(user: user, event: event)
+                }
+              }
+            }
+          }
+        }
         Spacer()
-        
-        Button(action: {}) {
-          Text("+")
-            .foregroundColor(.white)
-            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-            .font(.title)
-        }
-        .padding()
-        .background(
-          Circle()
-            .fill(Color.green)
-            .cornerRadius(20))
-        
-      }.padding(EdgeInsets(top: 5, leading: 16, bottom: 5, trailing: 16))
-      
-      List {
-        ForEach(user.tbd_events.indices) {
-          if let event = eventRepository.getByID(self.user.tbd_events[$0]) {
-            ScheduledRowView(event: event)
-          }
-        }
       }
-      
-      
-      
-      Text("Upcoming Events")
-        .fontWeight(.bold)
-        .font(.title3)
-        .padding(EdgeInsets(top: 5, leading: 16, bottom: 5, trailing: 16))
-      
-      
-      
-      
-      List {
-        ForEach(user.upcoming_events.indices) {
-          if let event = eventRepository.getByID(self.user.upcoming_events[$0]) {
-            ScheduledRowView(event: event)
-          }
-        }
-      }
-      
-      Spacer()
     }
   }
 }

@@ -18,17 +18,7 @@ class EventViewModel: ObservableObject {
     // add the event to the event respository
     eventRepository.create(event)
     
-    
-    // add the event to the tbd events of each participant(including host)
-    //addToTBD(event, participants)
-
-
-    
-    // add availability instances
-    //addAvailabilityRecords(event, participants)
   }
-  
-    
   
   func updateDB(_ event: Event, _ participants: [String?]) {
     eventRepository.get()
@@ -67,6 +57,5 @@ class EventViewModel: ObservableObject {
 //  }
   
 }
-
 
 

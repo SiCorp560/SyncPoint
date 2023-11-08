@@ -4,154 +4,145 @@
 //
 //  Created by Ammar Raza on 03/11/2023.
 //
-import SwiftUI
 
+import SwiftUI
 
 struct EventDetailsView: View {
     @ObservedObject var userRepository = UserRepository()
-  
+    var user: User
     var event: Event
-    
     let calendar = Calendar.current
-  
     
-  var body: some View {
-    NavigationView {
-      VStack {
-      
-          // Event name
-        Text(event.name)
-          .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-          .font(.title2)
-          .frame(maxWidth: 340, alignment: .leading)
-          .padding()
-          .background(Color.green.opacity(0.3))
-          .cornerRadius(8)
-        
-        // Date and time
-        
-        Text("Date and Time:")
-          .font(.headline)
-          .foregroundColor(.black)
-          .frame(maxWidth: .infinity, alignment: .leading)
-          .padding()
-        
-      
-        if let startDate = event.final_meeting_start, let endDate = event.final_meeting_end {
-          let newEndDate = calendar.date(byAdding: .minute, value: 1, to: endDate)!
-          
-          VStack(alignment: .leading){
-            HStack{
-              Image(systemName: "calendar")
-              Text(startDate.formatted(date: .abbreviated, time: .omitted))
-            }
+    var body: some View {
+        NavigationView {
+          VStack {
+            // MARK: Event name
+            
+            Text("Event Name:")
+              .font(.headline)
+              .foregroundColor(.black)
+              .frame(maxWidth: .infinity, alignment: .leading)
+              .padding()
+            
+              Text(event.name)
+                .fontWeight(.bold)
+                .font(.title2)
+                .frame(maxWidth: 340, alignment: .leading)
+                .padding()
+                .background(Color.green.opacity(0.2))
+                .cornerRadius(8)
             
             
-            HStack{
-              Image(systemName: "clock")
-              Text("\(startDate.formatted(date: .omitted, time: .shortened)) - \(newEndDate.formatted(date: .omitted, time: .shortened))")
-            }
-          }
-          .frame(maxWidth: 340, alignment: .leading)
-          .padding()
-          .background(Color.green.opacity(0.3))
-          .cornerRadius(8)
-          
-          
-        
-        } else {
-            
-          HStack{
+            Spacer()
+            // MARK: Final meeting date and time
+            Text("Date and Time:")
+              .font(.headline)
+              .foregroundColor(.black)
+              .frame(maxWidth: .infinity, alignment: .leading)
+              .padding()
+            if let startDate = event.final_meeting_start, let endDate = event.final_meeting_end {
+              VStack(alignment: .leading) {
+                HStack {
+                  Image(systemName: "calendar")
+                  Text(startDate.formatted(date: .abbreviated, time: .omitted))
+                }
+                HStack {
+                  Image(systemName: "clock")
+                  Text("\(startDate.formatted(date: .omitted, time: .shortened)) - \(endDate.formatted(date: .omitted, time: .shortened))")
+                }
+              }
+              .frame(maxWidth: 340, alignment: .leading)
+              .padding()
+              .background(Color.green.opacity(0.2))
+              .cornerRadius(8)
+            } else {
+              HStack{
                 Image(systemName: "calendar")
                 Text("TBD")
-            }
-            
-          HStack{
+              }
+              HStack{
                 Image(systemName: "clock")
                 Text("TBD")
+              }
             }
-        }
-        
-        
-        // Event description
-        Text("Description:")
-          .font(.headline)
-          .foregroundColor(.black)
-          .frame(maxWidth: .infinity, alignment: .leading)
-          .padding()
-        
-        Text(event.description)
-          .frame(maxWidth: 340, alignment: .leading)
-          .padding()
-          .background(Color.green.opacity(0.3))
-          .cornerRadius(8)
-        
-      
-        
-        // Participants
-        Text("Participants:")
-          .font(.headline)
-          .foregroundColor(.black)
-          .frame(maxWidth: .infinity, alignment: .leading)
-          .padding()
-        
-          HStack{
-            ForEach(event.participants, id: \.self) { name in
-              Text(name ?? "user")
-                .frame(width: 55, height: 35, alignment: .center)
-                .padding()
-                .background(
+            
+            Spacer()
+            // MARK: Event description
+            Text("Description:")
+              .font(.headline)
+              .foregroundColor(.black)
+              .frame(maxWidth: .infinity, alignment: .leading)
+              .padding()
+            Text(event.description)
+              .frame(maxWidth: 340, alignment: .leading)
+              .padding()
+              .background(Color.green.opacity(0.2))
+              .cornerRadius(8)
+            
+            Spacer()
+            // MARK: Participants
+            Text("Participants:")
+              .font(.headline)
+              .foregroundColor(.black)
+              .frame(maxWidth: .infinity, alignment: .leading)
+              .padding()
+            
+            HStack{
+              ForEach(event.participants.indices) {
+                if let user = userRepository.getByID(self.event.participants[$0]!) {
+                  Text("\(user.first_name)")
+                    .frame(width: 55, height: 35, alignment: .center)
+                    .padding()
+                    .background(
                       Circle()
-                        .fill(Color.green.opacity(0.3))
-                ).foregroundColor(.black)
+                        .fill(Color.green.opacity(0.2))
+                    ).foregroundColor(.black)
+                }
+              }
+            }.frame(maxWidth: .infinity, alignment: .leading)
+            
+            Spacer()
+            HStack{
+              // MARK: Navigation to other features
+              NavigationLink(
+                destination: SelectAvailabilityView(user: user, event: event),
+                label: {
+                  Text("Select Availability")
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.green)
+                    .cornerRadius(8)
+                })
+              
+              
+              NavigationLink(
+                destination: PeopleTimesView(event: event),
+                label: {
+                  Text("View All Times")
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.green)
+                    .cornerRadius(8)
+                })
+            }.padding()
+            
+            Spacer()
+            Text("Choose Final Time:")
+              .font(.headline)
+              .foregroundColor(.black)
+              .frame(maxWidth: .infinity, alignment: .leading)
+              .padding()
+            
+            
+          }.navigationBarTitle(Text("Event Details"), displayMode: .inline)
+          .navigationBarItems(trailing: HStack {
+            Button("Edit") {
             }
-          }
-        .padding()
-        .frame(maxWidth: .infinity, alignment: .leading)
-        
-        
-        // Buttons and other features
-        HStack{
-          Button(action: {}) {
-            Text("Select Availability")
-              .foregroundColor(.white)
-          }
-          .padding()
-          .background(Color.green)
-          .cornerRadius(25)
+        })
           
-          Button(action: {}) {
-            Text("View All Times")
-              .foregroundColor(.white)
-          }
-          .padding()
-          .background(Color.green)
-          .cornerRadius(25)
+          
         }
-        .padding()
-        
-        Spacer()
-        
-      }.navigationBarTitle(Text("Event Details"), displayMode: .inline)
+      
+        Spacer()// To force the content to the top
     }
-  }
-  }
-
-
-//extension Event {
-//    static var mock: Event {
-//        return Event(
-//          id: "1",
-//          name: "Mentor Meeting",
-//          description: "Get feedback on sprint 3, ask app design suggestions and talk about database.",
-//          participants: ["Ammar", "Simon", "Ahmad", "Matt"],
-//          earliest_date: Date(),
-//          final_meeting_start: Date(),
-//          final_meeting_end: Date().addingTimeInterval(3600),
-//          host: "Ammar"
-//        )
-//    }
-//}
-//#Preview {
-//  EventDetailsView(event: .mock)
-//}
+}
