@@ -22,7 +22,7 @@ struct SyncPointApp: App {
     
     var body: some Scene {
         WindowGroup {
-            TestView()
+            ContentView()
         }
     }
 }

@@ -32,6 +32,7 @@ class UserRepository: ObservableObject {
                 self.users = querySnapshot?.documents.compactMap { document in
                     try? document.data(as: User.self)
                 } ?? []
+              print("Success", self.users)
             }
     }
     
@@ -63,5 +64,14 @@ class UserRepository: ObservableObject {
                 print("Unable to remove user: \(error.localizedDescription)")
             }
         }
+    }
+  
+  // MARK: Filtering methods
+     func getByID(_ id: String) -> User? {
+         return self.users.filter{$0.id == id}.first
+     }
+    
+    func getByName(_ last_name: String, _ first_name: String) -> User? {
+        return self.users.filter{$0.last_name == last_name && $0.first_name == first_name}.first
     }
 }

@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		121C85AF2AFC5E780009AEBB /* SyncPointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121C85AE2AFC5E780009AEBB /* SyncPointTests.swift */; };
+		121C85B62AFC84130009AEBB /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121C85B52AFC84130009AEBB /* ModelTests.swift */; };
 		12B0BDE42AF2D71900BCB724 /* EventRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0BDE32AF2D71900BCB724 /* EventRepository.swift */; };
-		12B0BDE62AF2F80900BCB724 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0BDE52AF2F80800BCB724 /* TestView.swift */; };
 		12B0BDE82AF2F8DA00BCB724 /* AvailabilityRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0BDE72AF2F8DA00BCB724 /* AvailabilityRepository.swift */; };
 		12F9DB982AE87FED00B1EC0F /* SyncPointApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9DB972AE87FED00B1EC0F /* SyncPointApp.swift */; };
 		12F9DB9A2AE87FED00B1EC0F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9DB992AE87FED00B1EC0F /* ContentView.swift */; };
@@ -31,11 +32,33 @@
 		12F9DBC72AE887AF00B1EC0F /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9DBC62AE887AF00B1EC0F /* UserRepository.swift */; };
 		12F9DBC92AE8898B00B1EC0F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12F9DBC82AE8898B00B1EC0F /* GoogleService-Info.plist */; };
 		12F9DBD02AE9F05500B1EC0F /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9DBCF2AE9F05500B1EC0F /* Event.swift */; };
+		A02FE5672AF5A2D9007E29FA /* NewEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02FE5662AF5A2D9007E29FA /* NewEventView.swift */; };
+		A02FE5692AF5A2F9007E29FA /* EventDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02FE5682AF5A2F9007E29FA /* EventDetailsView.swift */; };
+		A02FE56B2AF5A32A007E29FA /* SelectAvailabilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02FE56A2AF5A32A007E29FA /* SelectAvailabilityView.swift */; };
+		A02FE56D2AF5A34E007E29FA /* ScheduledEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02FE56C2AF5A34E007E29FA /* ScheduledEventsView.swift */; };
+		A02FE56F2AF5A393007E29FA /* PeopleTimesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02FE56E2AF5A393007E29FA /* PeopleTimesView.swift */; };
+		A02FE5712AF5A3A2007E29FA /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02FE5702AF5A3A1007E29FA /* NotificationsView.swift */; };
+		A09009822AF75F8C00B8DB6A /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09009812AF75F8C00B8DB6A /* EventViewModel.swift */; };
+		A0C42F9D2AF76BC5003AB121 /* AvailabilityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C42F9C2AF76BC5003AB121 /* AvailabilityViewModel.swift */; };
+		A0C42F9F2AF76BFE003AB121 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C42F9E2AF76BFE003AB121 /* UserViewModel.swift */; };
+		A0C42FA12AF7885A003AB121 /* ScheduledRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C42FA02AF7885A003AB121 /* ScheduledRowView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		121C85B02AFC5E780009AEBB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 12F9DB8C2AE87FED00B1EC0F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 12F9DB932AE87FED00B1EC0F;
+			remoteInfo = SyncPoint;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		121C85AC2AFC5E780009AEBB /* SyncPointTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SyncPointTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		121C85AE2AFC5E780009AEBB /* SyncPointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncPointTests.swift; sourceTree = "<group>"; };
+		121C85B52AFC84130009AEBB /* ModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
 		12B0BDE32AF2D71900BCB724 /* EventRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepository.swift; sourceTree = "<group>"; };
-		12B0BDE52AF2F80800BCB724 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		12B0BDE72AF2F8DA00BCB724 /* AvailabilityRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityRepository.swift; sourceTree = "<group>"; };
 		12F9DB942AE87FED00B1EC0F /* SyncPoint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SyncPoint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12F9DB972AE87FED00B1EC0F /* SyncPointApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncPointApp.swift; sourceTree = "<group>"; };
@@ -47,9 +70,26 @@
 		12F9DBC62AE887AF00B1EC0F /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		12F9DBC82AE8898B00B1EC0F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		12F9DBCF2AE9F05500B1EC0F /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		A02FE5662AF5A2D9007E29FA /* NewEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventView.swift; sourceTree = "<group>"; };
+		A02FE5682AF5A2F9007E29FA /* EventDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsView.swift; sourceTree = "<group>"; };
+		A02FE56A2AF5A32A007E29FA /* SelectAvailabilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAvailabilityView.swift; sourceTree = "<group>"; };
+		A02FE56C2AF5A34E007E29FA /* ScheduledEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledEventsView.swift; sourceTree = "<group>"; };
+		A02FE56E2AF5A393007E29FA /* PeopleTimesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTimesView.swift; sourceTree = "<group>"; };
+		A02FE5702AF5A3A1007E29FA /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
+		A09009812AF75F8C00B8DB6A /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
+		A0C42F9C2AF76BC5003AB121 /* AvailabilityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityViewModel.swift; sourceTree = "<group>"; };
+		A0C42F9E2AF76BFE003AB121 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		A0C42FA02AF7885A003AB121 /* ScheduledRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		121C85A92AFC5E780009AEBB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		12F9DB912AE87FED00B1EC0F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -72,10 +112,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		121C85AD2AFC5E780009AEBB /* SyncPointTests */ = {
+			isa = PBXGroup;
+			children = (
+				121C85AE2AFC5E780009AEBB /* SyncPointTests.swift */,
+				121C85B52AFC84130009AEBB /* ModelTests.swift */,
+			);
+			path = SyncPointTests;
+			sourceTree = "<group>";
+		};
 		12F9DB8B2AE87FED00B1EC0F = {
 			isa = PBXGroup;
 			children = (
 				12F9DB962AE87FED00B1EC0F /* SyncPoint */,
+				121C85AD2AFC5E780009AEBB /* SyncPointTests */,
 				12F9DB952AE87FED00B1EC0F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -84,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				12F9DB942AE87FED00B1EC0F /* SyncPoint.app */,
+				121C85AC2AFC5E780009AEBB /* SyncPointTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -91,6 +142,7 @@
 		12F9DB962AE87FED00B1EC0F /* SyncPoint */ = {
 			isa = PBXGroup;
 			children = (
+				A09009802AF75F1900B8DB6A /* ViewModels */,
 				12F9DBCA2AE88A8C00B1EC0F /* Views */,
 				12F9DBC82AE8898B00B1EC0F /* GoogleService-Info.plist */,
 				12F9DBBF2AE8833600B1EC0F /* DataRepositories */,
@@ -134,14 +186,48 @@
 		12F9DBCA2AE88A8C00B1EC0F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				12B0BDE52AF2F80800BCB724 /* TestView.swift */,
+				A02FE5662AF5A2D9007E29FA /* NewEventView.swift */,
+				A02FE5682AF5A2F9007E29FA /* EventDetailsView.swift */,
+				A02FE56A2AF5A32A007E29FA /* SelectAvailabilityView.swift */,
+				A02FE56C2AF5A34E007E29FA /* ScheduledEventsView.swift */,
+				A02FE56E2AF5A393007E29FA /* PeopleTimesView.swift */,
+				A02FE5702AF5A3A1007E29FA /* NotificationsView.swift */,
+				A0C42FA02AF7885A003AB121 /* ScheduledRowView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		A09009802AF75F1900B8DB6A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A09009812AF75F8C00B8DB6A /* EventViewModel.swift */,
+				A0C42F9C2AF76BC5003AB121 /* AvailabilityViewModel.swift */,
+				A0C42F9E2AF76BFE003AB121 /* UserViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		121C85AB2AFC5E780009AEBB /* SyncPointTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 121C85B22AFC5E780009AEBB /* Build configuration list for PBXNativeTarget "SyncPointTests" */;
+			buildPhases = (
+				121C85A82AFC5E780009AEBB /* Sources */,
+				121C85A92AFC5E780009AEBB /* Frameworks */,
+				121C85AA2AFC5E780009AEBB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				121C85B12AFC5E780009AEBB /* PBXTargetDependency */,
+			);
+			name = SyncPointTests;
+			productName = SyncPointTests;
+			productReference = 121C85AC2AFC5E780009AEBB /* SyncPointTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		12F9DB932AE87FED00B1EC0F /* SyncPoint */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 12F9DBA22AE87FF300B1EC0F /* Build configuration list for PBXNativeTarget "SyncPoint" */;
@@ -183,6 +269,10 @@
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
+					121C85AB2AFC5E780009AEBB = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = 12F9DB932AE87FED00B1EC0F;
+					};
 					12F9DB932AE87FED00B1EC0F = {
 						CreatedOnToolsVersion = 15.0;
 					};
@@ -205,11 +295,19 @@
 			projectRoot = "";
 			targets = (
 				12F9DB932AE87FED00B1EC0F /* SyncPoint */,
+				121C85AB2AFC5E780009AEBB /* SyncPointTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		121C85AA2AFC5E780009AEBB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		12F9DB922AE87FED00B1EC0F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -223,25 +321,85 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		121C85A82AFC5E780009AEBB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				121C85B62AFC84130009AEBB /* ModelTests.swift in Sources */,
+				121C85AF2AFC5E780009AEBB /* SyncPointTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		12F9DB902AE87FED00B1EC0F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				12F9DB9A2AE87FED00B1EC0F /* ContentView.swift in Sources */,
+				A02FE56D2AF5A34E007E29FA /* ScheduledEventsView.swift in Sources */,
+				A02FE56B2AF5A32A007E29FA /* SelectAvailabilityView.swift in Sources */,
 				12B0BDE42AF2D71900BCB724 /* EventRepository.swift in Sources */,
+				A0C42F9D2AF76BC5003AB121 /* AvailabilityViewModel.swift in Sources */,
 				12F9DBC72AE887AF00B1EC0F /* UserRepository.swift in Sources */,
 				12B0BDE82AF2F8DA00BCB724 /* AvailabilityRepository.swift in Sources */,
+				A0C42F9F2AF76BFE003AB121 /* UserViewModel.swift in Sources */,
+				A02FE56F2AF5A393007E29FA /* PeopleTimesView.swift in Sources */,
 				12F9DB982AE87FED00B1EC0F /* SyncPointApp.swift in Sources */,
-				12B0BDE62AF2F80900BCB724 /* TestView.swift in Sources */,
 				12F9DBC52AE886ED00B1EC0F /* Availability.swift in Sources */,
 				12F9DBD02AE9F05500B1EC0F /* Event.swift in Sources */,
+				A02FE5712AF5A3A2007E29FA /* NotificationsView.swift in Sources */,
+				A0C42FA12AF7885A003AB121 /* ScheduledRowView.swift in Sources */,
+				A02FE5672AF5A2D9007E29FA /* NewEventView.swift in Sources */,
+				A09009822AF75F8C00B8DB6A /* EventViewModel.swift in Sources */,
+				A02FE5692AF5A2F9007E29FA /* EventDetailsView.swift in Sources */,
 				12F9DBC12AE8837600B1EC0F /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		121C85B12AFC5E780009AEBB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 12F9DB932AE87FED00B1EC0F /* SyncPoint */;
+			targetProxy = 121C85B02AFC5E780009AEBB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		121C85B32AFC5E780009AEBB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Scorpuz.SyncPointTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SyncPoint.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SyncPoint";
+			};
+			name = Debug;
+		};
+		121C85B42AFC5E780009AEBB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Scorpuz.SyncPointTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SyncPoint.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SyncPoint";
+			};
+			name = Release;
+		};
 		12F9DBA02AE87FF300B1EC0F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -420,6 +578,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		121C85B22AFC5E780009AEBB /* Build configuration list for PBXNativeTarget "SyncPointTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				121C85B32AFC5E780009AEBB /* Debug */,
+				121C85B42AFC5E780009AEBB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		12F9DB8F2AE87FED00B1EC0F /* Build configuration list for PBXProject "SyncPoint" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

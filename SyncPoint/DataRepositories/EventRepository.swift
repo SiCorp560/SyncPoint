@@ -40,9 +40,11 @@ class EventRepository: ObservableObject {
         do {
             let newEvent = event
             _ = try store.collection(path).addDocument(from: newEvent)
+          //return newEvent.documentID
         } catch {
             fatalError("Unable to add event: \(error.localizedDescription).")
         }
+      
     }
 
     func update(_ event: Event) {
@@ -64,4 +66,8 @@ class EventRepository: ObservableObject {
             }
         }
     }
+  
+  func getByID(_ id: String) -> Event? {
+          return self.events.filter{$0.id == id}.first
+      }
 }

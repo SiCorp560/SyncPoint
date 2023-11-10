@@ -64,4 +64,12 @@ class AvailabilityRepository: ObservableObject {
             }
         }
     }
+  
+  func getByEvent(_ event: String) -> [Availability] {
+         return self.availabilities.filter{$0.event == event}
+     }
+
+   func getByBoth(_ user: String, _ event: String) -> Availability? {
+       return self.availabilities.filter{$0.user == user && $0.event == event}.first
+   }
 }
