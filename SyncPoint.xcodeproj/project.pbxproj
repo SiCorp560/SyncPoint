@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		121C85AF2AFC5E780009AEBB /* SyncPointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121C85AE2AFC5E780009AEBB /* SyncPointTests.swift */; };
+		121C85B62AFC84130009AEBB /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121C85B52AFC84130009AEBB /* ModelTests.swift */; };
 		12B0BDE42AF2D71900BCB724 /* EventRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0BDE32AF2D71900BCB724 /* EventRepository.swift */; };
 		12B0BDE82AF2F8DA00BCB724 /* AvailabilityRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0BDE72AF2F8DA00BCB724 /* AvailabilityRepository.swift */; };
 		12F9DB982AE87FED00B1EC0F /* SyncPointApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9DB972AE87FED00B1EC0F /* SyncPointApp.swift */; };
@@ -42,7 +44,20 @@
 		A0C42FA12AF7885A003AB121 /* ScheduledRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C42FA02AF7885A003AB121 /* ScheduledRowView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		121C85B02AFC5E780009AEBB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 12F9DB8C2AE87FED00B1EC0F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 12F9DB932AE87FED00B1EC0F;
+			remoteInfo = SyncPoint;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		121C85AC2AFC5E780009AEBB /* SyncPointTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SyncPointTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		121C85AE2AFC5E780009AEBB /* SyncPointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncPointTests.swift; sourceTree = "<group>"; };
+		121C85B52AFC84130009AEBB /* ModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
 		12B0BDE32AF2D71900BCB724 /* EventRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepository.swift; sourceTree = "<group>"; };
 		12B0BDE72AF2F8DA00BCB724 /* AvailabilityRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityRepository.swift; sourceTree = "<group>"; };
 		12F9DB942AE87FED00B1EC0F /* SyncPoint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SyncPoint.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +83,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		121C85A92AFC5E780009AEBB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		12F9DB912AE87FED00B1EC0F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -90,10 +112,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		121C85AD2AFC5E780009AEBB /* SyncPointTests */ = {
+			isa = PBXGroup;
+			children = (
+				121C85AE2AFC5E780009AEBB /* SyncPointTests.swift */,
+				121C85B52AFC84130009AEBB /* ModelTests.swift */,
+			);
+			path = SyncPointTests;
+			sourceTree = "<group>";
+		};
 		12F9DB8B2AE87FED00B1EC0F = {
 			isa = PBXGroup;
 			children = (
 				12F9DB962AE87FED00B1EC0F /* SyncPoint */,
+				121C85AD2AFC5E780009AEBB /* SyncPointTests */,
 				12F9DB952AE87FED00B1EC0F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -102,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				12F9DB942AE87FED00B1EC0F /* SyncPoint.app */,
+				121C85AC2AFC5E780009AEBB /* SyncPointTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -177,6 +210,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		121C85AB2AFC5E780009AEBB /* SyncPointTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 121C85B22AFC5E780009AEBB /* Build configuration list for PBXNativeTarget "SyncPointTests" */;
+			buildPhases = (
+				121C85A82AFC5E780009AEBB /* Sources */,
+				121C85A92AFC5E780009AEBB /* Frameworks */,
+				121C85AA2AFC5E780009AEBB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				121C85B12AFC5E780009AEBB /* PBXTargetDependency */,
+			);
+			name = SyncPointTests;
+			productName = SyncPointTests;
+			productReference = 121C85AC2AFC5E780009AEBB /* SyncPointTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		12F9DB932AE87FED00B1EC0F /* SyncPoint */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 12F9DBA22AE87FF300B1EC0F /* Build configuration list for PBXNativeTarget "SyncPoint" */;
@@ -218,6 +269,10 @@
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
+					121C85AB2AFC5E780009AEBB = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = 12F9DB932AE87FED00B1EC0F;
+					};
 					12F9DB932AE87FED00B1EC0F = {
 						CreatedOnToolsVersion = 15.0;
 					};
@@ -240,11 +295,19 @@
 			projectRoot = "";
 			targets = (
 				12F9DB932AE87FED00B1EC0F /* SyncPoint */,
+				121C85AB2AFC5E780009AEBB /* SyncPointTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		121C85AA2AFC5E780009AEBB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		12F9DB922AE87FED00B1EC0F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -258,6 +321,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		121C85A82AFC5E780009AEBB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				121C85B62AFC84130009AEBB /* ModelTests.swift in Sources */,
+				121C85AF2AFC5E780009AEBB /* SyncPointTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		12F9DB902AE87FED00B1EC0F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -285,7 +357,49 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		121C85B12AFC5E780009AEBB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 12F9DB932AE87FED00B1EC0F /* SyncPoint */;
+			targetProxy = 121C85B02AFC5E780009AEBB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		121C85B32AFC5E780009AEBB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Scorpuz.SyncPointTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SyncPoint.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SyncPoint";
+			};
+			name = Debug;
+		};
+		121C85B42AFC5E780009AEBB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Scorpuz.SyncPointTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SyncPoint.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SyncPoint";
+			};
+			name = Release;
+		};
 		12F9DBA02AE87FF300B1EC0F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -464,6 +578,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		121C85B22AFC5E780009AEBB /* Build configuration list for PBXNativeTarget "SyncPointTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				121C85B32AFC5E780009AEBB /* Debug */,
+				121C85B42AFC5E780009AEBB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		12F9DB8F2AE87FED00B1EC0F /* Build configuration list for PBXProject "SyncPoint" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

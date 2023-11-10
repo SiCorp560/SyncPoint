@@ -70,4 +70,8 @@ class UserRepository: ObservableObject {
      func getByID(_ id: String) -> User? {
          return self.users.filter{$0.id == id}.first
      }
+    
+    func getByName(_ last_name: String, _ first_name: String) -> User? {
+        return self.users.filter{$0.last_name == last_name && $0.first_name == first_name}.first
+    }
 }
