@@ -13,7 +13,7 @@ struct SignInView: View {
     
     var body: some View {
         Button(
-            action: { authViewModel.signIn() },
+            action: { Task {await authViewModel.signIn()} },
             label: {
                 Text("Sign In with Google")
             })
