@@ -15,7 +15,7 @@ struct TestHomeView: View {
         Button(
             action: { authViewModel.signOut() },
             label: {
-                Text("Sign In with Google")
+                Text("Sign Out")
             })
     }
 }

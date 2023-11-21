@@ -7,14 +7,17 @@
 
 import SwiftUI
 struct ContentView: View {
-//    @ObservedObject var userRepository = UserRepository()
+    @ObservedObject var userRepository = UserRepository()
 //    @ObservedObject var eventRepository = EventRepository()
 //    @ObservedObject var availabilityRepository = AvailabilityRepository()
     @EnvironmentObject var authViewModel: AuthenticationViewModel
   
     var body: some View {
         switch authViewModel.state {
-            case .signedIn: TestHomeView()
+            case .signedIn: //TestHomeView()
+                if let user = userRepository.getByID("YS3CGe8ESCRrqB6XaWAG") {
+                    ScheduledEventsView(user: user)
+                }
             case .signedOut: SignInView()
         }
 //        let users = userRepository.users.sorted()
