@@ -78,7 +78,12 @@ struct ScheduledEventsView: View {
         }
         Spacer()
       }
-    }
+    }.onAppear(perform: loadData)
+  }
+  
+  func loadData(){
+    print ("updated")
+    @ObservedObject var eventRepository = EventRepository()
   }
 }
 

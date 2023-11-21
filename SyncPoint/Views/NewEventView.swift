@@ -11,6 +11,7 @@ struct NewEventView: View {
   @State var searchField: String = ""
   @State var displayedUsers = [UserRepository]()
   
+  
   @ObservedObject var eventRepository = EventRepository()
   @ObservedObject var userRepository = UserRepository()
  
@@ -18,6 +19,7 @@ struct NewEventView: View {
   //@ObservedObject var userViewModel: UserViewModel
   
   var user: User
+
   
   @State var navigateToEventDetails = false
   @State private var name: String = ""
@@ -30,6 +32,7 @@ struct NewEventView: View {
   var body: some View {
     
       @State var displayedUsers = userRepository.users
+     //displayedUsers.removeAll{$0.id == user.id}
       
       let binding = Binding<String>(get: {
           self.searchField
@@ -66,20 +69,23 @@ struct NewEventView: View {
           
           
           Section(header: Text("Add Participants").foregroundColor(.black)) {
-            
+            //removeHost()
             TextField("Search", text: binding)
               .textFieldStyle(RoundedBorderTextFieldStyle())
-            List(displayedUsers) { user in
-              Text(user.first_name)
-                .onTapGesture {
-                  if let userId = user.id {
-                    if !participants.contains (userId) {
-                      self.participants.append(userId)
-                      displayedUsers.removeAll{$0.id == userId}
-                      
+            List(displayedUsers) { displayedUser in
+              if user.id != displayedUser.id {
+                Text(displayedUser.first_name)
+                  .onTapGesture {
+                    if let userId = displayedUser.id {
+                      if !participants.contains (userId) {
+                        self.participants.append(userId)
+                        
+                      }
                     }
                   }
-                }
+                
+              }
+
             }
           }
           
@@ -97,6 +103,9 @@ struct NewEventView: View {
           
           Button("Create Event") {
             addEvent()
+            //sleep(2)
+            //updateDB()
+            //clearFields()
           }.padding()
             .foregroundColor(.white)
             .background(Color.green)
@@ -137,7 +146,11 @@ struct NewEventView: View {
       private func addEvent() {
         // add the event to the events repository
         let event = Event(name:name, description: description, participants: participants, earliest_date: earliest_date, final_meeting_start: Date(), final_meeting_end: Date(), host: user.id)
-        participants.append(user.id)
+        
+        if !participants.contains(user.id) {
+                participants.append(user.id)
+            }
+        
         eventViewModel.add(event, participants)
       }
   
@@ -158,13 +171,9 @@ struct NewEventView: View {
   
       func updateDB() {
         let event = Event(name:name, description: description, participants: participants, earliest_date: earliest_date, final_meeting_start: Date(), final_meeting_end: Date(), host: user.id)
+        
         eventViewModel.updateDB(event, participants)
     
       }
-  
-    func removeHost() {
-      displayedUsers.removeAll{$0.users[0].id == user.id}
-    
-    }
   
     }
