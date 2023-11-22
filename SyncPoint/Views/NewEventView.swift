@@ -59,7 +59,7 @@ struct NewEventView: View {
               .cornerRadius(8)
           }
           
-          Section(header: Text("Select range of possible dates").foregroundColor(.black)) {
+          Section(header: Text("Select date").foregroundColor(.black)) {
             DatePicker("Earliest:", selection: $earliest_date, displayedComponents: .date)
               .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
               .background(Color.green.opacity(0.1))
@@ -79,6 +79,10 @@ struct NewEventView: View {
                     if let userId = displayedUser.id {
                       if !participants.contains (userId) {
                         self.participants.append(userId)
+                        
+                        if !participants.contains(user.id) {
+                                participants.append(user.id)
+                            }
                         
                       }
                     }
@@ -100,17 +104,18 @@ struct NewEventView: View {
             }
           }
           
-          
-          Button("Create Event") {
-            addEvent()
-            //sleep(2)
-            //updateDB()
-            //clearFields()
-          }.padding()
-            .foregroundColor(.white)
-            .background(Color.green)
-            .cornerRadius(15)
-            .frame(maxWidth: .infinity, alignment: .center)
+          if self.isValidEvent() {
+            Button("Create Event") {
+              addEvent()
+              //sleep(2)
+              //updateDB()
+              //clearFields()
+            }.padding()
+              .foregroundColor(.white)
+              .background(Color.green)
+              .cornerRadius(15)
+              .frame(maxWidth: .infinity, alignment: .center)
+          }
         
           
           if self.isValidEvent() {
@@ -145,11 +150,7 @@ struct NewEventView: View {
     
       private func addEvent() {
         // add the event to the events repository
-        let event = Event(name:name, description: description, participants: participants, earliest_date: earliest_date, final_meeting_start: Date(), final_meeting_end: Date(), host: user.id)
-        
-        if !participants.contains(user.id) {
-                participants.append(user.id)
-            }
+        let event = Event(name:name, description: description, participants: participants, earliest_date: earliest_date, final_meeting_start: nil, final_meeting_end: nil, host: user.id)
         
         eventViewModel.add(event, participants)
       }

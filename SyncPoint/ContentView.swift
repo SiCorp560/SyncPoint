@@ -63,8 +63,10 @@ struct ContentView: View {
     //let users = userRepository.users.sorted()
     //let events = eventRepository.events.sorted()
     
-    if let user = userRepository.getByID("8yNDXAvEKcxEZCDUu74A"),
-       let event = eventRepository.getByID("H9cCp7JrENa0s4E5djzn") {
+    if let user = userRepository.getByID("8yNDXAvEKcxEZCDUu74A")
+       //let event = eventRepository.getByID("7msGh55gCrjdvQClTqov")
+    
+    {
       //NewEventView(user: user)
       ScheduledEventsView(user: user)
       //EventDetailsView(user: user, event: event)
