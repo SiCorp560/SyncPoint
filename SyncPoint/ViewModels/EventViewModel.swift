@@ -35,28 +35,13 @@ class EventViewModel: ObservableObject {
       }
       
       for participant in newParticipants {
-          //var times = ((Array(repeating: Array(repeating: false, count: 7), count: 30 * 7)))
-          var availability = Availability(user: participant, event:eventID, times: [], indicated:false)
+          var times = ((Array(repeating: Array(repeating: false, count: 7), count: 30 * 7)))
+          var availability = Availability(user: participant, event:eventID, times: times, indicated:false)
         availabilityRepository.create(availability)
       }
       
     }
   }
-  
-  
-  
-//  func addAvailabilityRecords(_ event: Event, _ participants: [String?]) {
-//    let users = userResposirty.users
-//    for participant in participants {
-//      var thisUser = users.filter { $0.id == participant }.first
-//      if let unwrappedUser = thisUser {
-//        var userID = unwrappedUser.id ?? "-1"
-//        var availability = Availability(user: userID, event:event.id ?? "-1", times:[], indicated:false)
-//        availabilityRepository.create(availability)
-//      }
-//    }
-//  }
-  
 }
 
 
