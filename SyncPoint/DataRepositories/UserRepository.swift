@@ -10,7 +10,7 @@ import Combine
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-class UserRepository: ObservableObject {
+class UserRepository: ObservableObject, Identifiable {
     private let path: String = "users"
     private let store = Firestore.firestore()
     

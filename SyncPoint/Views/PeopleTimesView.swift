@@ -34,7 +34,7 @@ struct PeopleTimesView: View {
                                 }
                             }
                         }
-                        ForEach(0..<16, id: \.self) { rowIndex in
+                        ForEach(0..<30, id: \.self) { rowIndex in
                             HStack {
                                 Text(calendar.date(byAdding: .minute, value: 30 * rowIndex, to: startDate)!.formatted(date: .omitted, time: .shortened))
                                     .frame(width: 75, alignment: .center)

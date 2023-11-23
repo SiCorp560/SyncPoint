@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		121C85AF2AFC5E780009AEBB /* SyncPointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121C85AE2AFC5E780009AEBB /* SyncPointTests.swift */; };
 		121C85B62AFC84130009AEBB /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121C85B52AFC84130009AEBB /* ModelTests.swift */; };
+		125484F12B04278500B42C57 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 125484F02B04278500B42C57 /* GoogleSignIn */; };
+		125484F32B04278600B42C57 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 125484F22B04278600B42C57 /* GoogleSignInSwift */; };
+		125484F52B0511F500B42C57 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125484F42B0511F500B42C57 /* AuthenticationViewModel.swift */; };
+		125484F92B0513F400B42C57 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125484F82B0513F400B42C57 /* SignInView.swift */; };
+		1269A8C42B05F6F200DE4385 /* TestHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1269A8C32B05F6F200DE4385 /* TestHomeView.swift */; };
 		12B0BDE42AF2D71900BCB724 /* EventRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0BDE32AF2D71900BCB724 /* EventRepository.swift */; };
 		12B0BDE82AF2F8DA00BCB724 /* AvailabilityRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0BDE72AF2F8DA00BCB724 /* AvailabilityRepository.swift */; };
 		12F9DB982AE87FED00B1EC0F /* SyncPointApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9DB972AE87FED00B1EC0F /* SyncPointApp.swift */; };
@@ -58,6 +63,10 @@
 		121C85AC2AFC5E780009AEBB /* SyncPointTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SyncPointTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		121C85AE2AFC5E780009AEBB /* SyncPointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncPointTests.swift; sourceTree = "<group>"; };
 		121C85B52AFC84130009AEBB /* ModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
+		125484EE2B040BE800B42C57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		125484F42B0511F500B42C57 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
+		125484F82B0513F400B42C57 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		1269A8C32B05F6F200DE4385 /* TestHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHomeView.swift; sourceTree = "<group>"; };
 		12B0BDE32AF2D71900BCB724 /* EventRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepository.swift; sourceTree = "<group>"; };
 		12B0BDE72AF2F8DA00BCB724 /* AvailabilityRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityRepository.swift; sourceTree = "<group>"; };
 		12F9DB942AE87FED00B1EC0F /* SyncPoint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SyncPoint.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,11 +106,13 @@
 				12F9DBB52AE8822300B1EC0F /* FirebaseDatabaseSwift in Frameworks */,
 				12F9DBAB2AE8822300B1EC0F /* FirebaseAnalyticsSwift in Frameworks */,
 				12F9DBB12AE8822300B1EC0F /* FirebaseAuthCombine-Community in Frameworks */,
+				125484F12B04278500B42C57 /* GoogleSignIn in Frameworks */,
 				12F9DBB92AE8822300B1EC0F /* FirebaseFirestoreCombine-Community in Frameworks */,
 				12F9DBAF2AE8822300B1EC0F /* FirebaseAuth in Frameworks */,
 				12F9DBBB2AE8822300B1EC0F /* FirebaseFirestoreSwift in Frameworks */,
 				12F9DBA72AE8822300B1EC0F /* FirebaseAnalytics in Frameworks */,
 				12F9DBB72AE8822300B1EC0F /* FirebaseFirestore in Frameworks */,
+				125484F32B04278600B42C57 /* GoogleSignInSwift in Frameworks */,
 				12F9DBA92AE8822300B1EC0F /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				12F9DBB32AE8822300B1EC0F /* FirebaseDatabase in Frameworks */,
 				12F9DBBD2AE8822300B1EC0F /* FirebaseInAppMessagingSwift-Beta in Frameworks */,
@@ -142,6 +153,7 @@
 		12F9DB962AE87FED00B1EC0F /* SyncPoint */ = {
 			isa = PBXGroup;
 			children = (
+				125484EE2B040BE800B42C57 /* Info.plist */,
 				A09009802AF75F1900B8DB6A /* ViewModels */,
 				12F9DBCA2AE88A8C00B1EC0F /* Views */,
 				12F9DBC82AE8898B00B1EC0F /* GoogleService-Info.plist */,
@@ -193,6 +205,8 @@
 				A02FE56E2AF5A393007E29FA /* PeopleTimesView.swift */,
 				A02FE5702AF5A3A1007E29FA /* NotificationsView.swift */,
 				A0C42FA02AF7885A003AB121 /* ScheduledRowView.swift */,
+				125484F82B0513F400B42C57 /* SignInView.swift */,
+				1269A8C32B05F6F200DE4385 /* TestHomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -203,6 +217,7 @@
 				A09009812AF75F8C00B8DB6A /* EventViewModel.swift */,
 				A0C42F9C2AF76BC5003AB121 /* AvailabilityViewModel.swift */,
 				A0C42F9E2AF76BFE003AB121 /* UserViewModel.swift */,
+				125484F42B0511F500B42C57 /* AuthenticationViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -254,6 +269,8 @@
 				12F9DBB82AE8822300B1EC0F /* FirebaseFirestoreCombine-Community */,
 				12F9DBBA2AE8822300B1EC0F /* FirebaseFirestoreSwift */,
 				12F9DBBC2AE8822300B1EC0F /* FirebaseInAppMessagingSwift-Beta */,
+				125484F02B04278500B42C57 /* GoogleSignIn */,
+				125484F22B04278600B42C57 /* GoogleSignInSwift */,
 			);
 			productName = SyncPoint;
 			productReference = 12F9DB942AE87FED00B1EC0F /* SyncPoint.app */;
@@ -289,6 +306,7 @@
 			mainGroup = 12F9DB8B2AE87FED00B1EC0F;
 			packageReferences = (
 				12F9DBA52AE8822300B1EC0F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				125484EF2B04278500B42C57 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = 12F9DB952AE87FED00B1EC0F /* Products */;
 			projectDirPath = "";
@@ -334,8 +352,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1269A8C42B05F6F200DE4385 /* TestHomeView.swift in Sources */,
 				12F9DB9A2AE87FED00B1EC0F /* ContentView.swift in Sources */,
 				A02FE56D2AF5A34E007E29FA /* ScheduledEventsView.swift in Sources */,
+				125484F52B0511F500B42C57 /* AuthenticationViewModel.swift in Sources */,
 				A02FE56B2AF5A32A007E29FA /* SelectAvailabilityView.swift in Sources */,
 				12B0BDE42AF2D71900BCB724 /* EventRepository.swift in Sources */,
 				A0C42F9D2AF76BC5003AB121 /* AvailabilityViewModel.swift in Sources */,
@@ -348,6 +368,7 @@
 				12F9DBD02AE9F05500B1EC0F /* Event.swift in Sources */,
 				A02FE5712AF5A3A2007E29FA /* NotificationsView.swift in Sources */,
 				A0C42FA12AF7885A003AB121 /* ScheduledRowView.swift in Sources */,
+				125484F92B0513F400B42C57 /* SignInView.swift in Sources */,
 				A02FE5672AF5A2D9007E29FA /* NewEventView.swift in Sources */,
 				A09009822AF75F8C00B8DB6A /* EventViewModel.swift in Sources */,
 				A02FE5692AF5A2F9007E29FA /* EventDetailsView.swift in Sources */,
@@ -529,6 +550,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"SyncPoint/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SyncPoint/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -557,6 +579,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"SyncPoint/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SyncPoint/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -608,6 +631,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		125484EF2B04278500B42C57 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		12F9DBA52AE8822300B1EC0F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -619,6 +650,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		125484F02B04278500B42C57 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 125484EF2B04278500B42C57 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		125484F22B04278600B42C57 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 125484EF2B04278500B42C57 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
 		12F9DBA62AE8822300B1EC0F /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 12F9DBA52AE8822300B1EC0F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

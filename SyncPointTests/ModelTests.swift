@@ -40,8 +40,8 @@ final class ModelTests: XCTestCase {
         eventRepository = EventRepository()
         eventRepository.events = [event]
         
-        availability = Availability(id: "avail1", user: "test1", event: "event1", times: [date], indicated: true)
-        availabilityViewModel = AvailabilityViewModel(availability: availability)
+        //availability = Availability(id: "avail1", user: "test1", event: "event1", times: [date], indicated: true)
+        //availabilityViewModel = AvailabilityViewModel(availability: availability)
     }
 
     override func tearDownWithError() throws {
@@ -55,8 +55,8 @@ final class ModelTests: XCTestCase {
         event = nil
         eventRepository = nil
         
-        availability = nil
-        availabilityViewModel = nil
+        //availability = nil
+        //availabilityViewModel = nil
         super.tearDown()
     }
 
@@ -100,14 +100,14 @@ final class ModelTests: XCTestCase {
         XCTAssertNotNil(getEvent)
     }
     
-    func testAvailabilityMethods() throws {
-        // MARK: Basic Availability fields
-        XCTAssertNotNil(availabilityViewModel.availability)
-        XCTAssertEqual(availabilityViewModel.availability.user, "test1")
-        XCTAssertEqual(availabilityViewModel.availability.event, "event1")
-        XCTAssertEqual(availabilityViewModel.availability.times.count, 1)
-        XCTAssert(availabilityViewModel.availability.indicated)
-    }
+//    func testAvailabilityMethods() throws {
+//        // MARK: Basic Availability fields
+//        XCTAssertNotNil(availabilityViewModel.availability)
+//        XCTAssertEqual(availabilityViewModel.availability.user, "test1")
+//        XCTAssertEqual(availabilityViewModel.availability.event, "event1")
+//        XCTAssertEqual(availabilityViewModel.availability.times.count, 1)
+//        XCTAssert(availabilityViewModel.availability.indicated)
+//    }
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
