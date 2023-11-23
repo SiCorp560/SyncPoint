@@ -5,6 +5,7 @@
 //  Created by Simon Corpuz on 11/15/23.
 //
 
+import SwiftUI
 import Firebase
 import FirebaseAuth
 import GoogleSignIn
@@ -15,6 +16,7 @@ class AuthenticationViewModel: ObservableObject {
         case signedOut
     }
 
+    @ObservedObject var userRepository = UserRepository()
     @Published var state: SignInState = .signedOut
     
     func signIn() async -> Bool {
@@ -25,9 +27,9 @@ class AuthenticationViewModel: ObservableObject {
         let config = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.configuration = config
         
-        guard let windowScene = await UIApplication.shared.connectedScenes.first as? UIWindowScene,
-              let window = await windowScene.windows.first,
-              let rootViewController = await window.rootViewController else {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let window = windowScene.windows.first,
+              let rootViewController = window.rootViewController else {
             print("There is no root view controller")
             return false
         }
@@ -44,6 +46,12 @@ class AuthenticationViewModel: ObservableObject {
             let result = try await Auth.auth().signIn(with: credential)
             let firebaseUser = result.user
             print("User \(firebaseUser.uid) signed in with email \(firebaseUser.email ?? "unknown")")
+            
+            if let getUser = userRepository.getByName(user.profile?.familyName ?? "None", user.profile?.givenName ?? "None") {} else {
+                let newUser = User(last_name: user.profile?.familyName ?? "None", first_name: user.profile?.givenName ?? "None", email: user.profile?.email ?? "None", phone: "", tbd_events: [], upcoming_events: [], notifications: [])
+                userRepository.create(newUser)
+            }
+            
             state = .signedIn
             return true
         } catch {

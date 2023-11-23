@@ -6,30 +6,21 @@
 //
 
 import SwiftUI
+import GoogleSignIn
+
 struct ContentView: View {
     @ObservedObject var userRepository = UserRepository()
-//    @ObservedObject var eventRepository = EventRepository()
-//    @ObservedObject var availabilityRepository = AvailabilityRepository()
     @EnvironmentObject var authViewModel: AuthenticationViewModel
+    private let googleUser = GIDSignIn.sharedInstance.currentUser
   
     var body: some View {
         switch authViewModel.state {
-            case .signedIn: //TestHomeView()
-                if let user = userRepository.getByID("YS3CGe8ESCRrqB6XaWAG") {
-                    ScheduledEventsView(user: user)
-                }
+            case .signedIn:
+            if let user = userRepository.getByName(googleUser?.profile?.familyName ?? "", googleUser?.profile?.givenName ?? "") {
+                ScheduledEventsView(user: user)
+            }
             case .signedOut: SignInView()
         }
-//        let users = userRepository.users.sorted()
-//        let events = eventRepository.events.sorted()
-//        
-//        if let user = userRepository.getByID("YS3CGe8ESCRrqB6XaWAG"), let event = eventRepository.getByID("H9cCp7JrENa0s4E5djzn") {
-//            NewEventView(user: user)
-//            ScheduledEventsView(user: user)
-//            EventDetailsView(user: user, event: event)
-//            SelectAvailabilityView(user: user, event: event)
-//            PeopleTimesView(event: event)
-//        }
     }
 }
 

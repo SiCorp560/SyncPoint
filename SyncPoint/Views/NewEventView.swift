@@ -136,9 +136,13 @@ struct NewEventView: View {
     
       private func addEvent() {
         // add the event to the events repository
-        let event = Event(name:name, description: description, participants: participants, earliest_date: earliest_date, final_meeting_start: Date(), final_meeting_end: Date(), host: user.id)
-        participants.append(user.id)
-        eventViewModel.add(event, participants)
+          var components = Calendar.current.dateComponents([.day], from: earliest_date)
+          components.hour = 8
+          components.minute = 0
+          let setDate = Calendar.current.date(from: components)
+          let event = Event(name:name, description: description, participants: participants, earliest_date: setDate!, final_meeting_start: Date(), final_meeting_end: Date(), host: user.id)
+          participants.append(user.id)
+          eventViewModel.add(event, participants)
       }
   
       private func clearFields() {

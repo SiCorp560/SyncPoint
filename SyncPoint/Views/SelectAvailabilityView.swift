@@ -13,7 +13,7 @@ struct SelectAvailabilityView: View {
     var event: Event
     let calendar = Calendar.current
     
-    @State private var selectedSlots: [[Bool]] = ((Array(repeating: Array(repeating: false, count: 7), count: 16 * 7)))
+    @State private var selectedSlots: [[Bool]] = ((Array(repeating: Array(repeating: false, count: 7), count: 30 * 7)))
     
     var body: some View {
         NavigationView {
@@ -33,7 +33,7 @@ struct SelectAvailabilityView: View {
                                     }
                                 }
                             }
-                            ForEach(0..<16, id: \.self) { rowIndex in
+                            ForEach(0..<30, id: \.self) { rowIndex in
                                 HStack {
                                     Text(calendar.date(byAdding: .minute, value: 30 * rowIndex, to: startDate)!.formatted(date: .omitted, time: .shortened))
                                         .frame(width: 75, alignment: .center)
@@ -55,7 +55,7 @@ struct SelectAvailabilityView: View {
                         }.padding()
                         Button(action: {
                             var yesDates: [Date] = Array()
-                            for rowIndex in 0..<16 {
+                            for rowIndex in 0..<30 {
                                 for columnIndex in 0..<7 {
                                     if selectedSlots[rowIndex][columnIndex] {
                                         let currentDate = calendar.date(byAdding: .minute, value: 30 * rowIndex, to: calendar.date(byAdding: .day, value: columnIndex, to: startDate)!)!
