@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EventDetailsView: View {
     @ObservedObject var userRepository = UserRepository()
+    @ObservedObject var availabilityRepository = AvailabilityRepository()
     var user: User
     var event: Event
     let calendar = Calendar.current
@@ -104,16 +105,17 @@ struct EventDetailsView: View {
             Spacer()
             HStack{
               // MARK: Navigation to other features
-              NavigationLink(
-                destination: SelectAvailabilityView(user: user, event: event),
-                label: {
-                  Text("Select Availability")
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.green)
-                    .cornerRadius(8)
-                })
-              
+              if let availability = availabilityRepository.getByBoth(user.id ?? "", event.id ?? "") {
+                NavigationLink(
+                  destination: SelectAvailabilityView(user: user, event: event, selectedSlots: availability.times),
+                  label: {
+                    Text("Select Availability")
+                      .foregroundColor(.white)
+                      .padding()
+                      .background(Color.green)
+                      .cornerRadius(8)
+                  })
+              }
               
               NavigationLink(
                 destination: PeopleTimesView(event: event),

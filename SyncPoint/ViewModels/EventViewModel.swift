@@ -35,7 +35,7 @@ class EventViewModel: ObservableObject {
       }
       
       for participant in newParticipants {
-          var times = ((Array(repeating: Array(repeating: false, count: 7), count: 30 * 7)))
+          var times = Array(repeating: false, count: 7*30)
           var availability = Availability(user: participant, event:eventID, times: times, indicated:false)
         availabilityRepository.create(availability)
       }

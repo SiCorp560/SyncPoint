@@ -41,8 +41,7 @@ struct PeopleTimesView: View {
                                     .padding()
                                 Spacer()
                                 ForEach(0..<7, id: \.self) { columnIndex in
-                                    let currentDate = calendar.date(byAdding: .minute, value: 30 * rowIndex, to: calendar.date(byAdding: .day, value: columnIndex, to: startDate)!)!
-                                    let matchedDates = availabilities.filter{$0.times.contains(currentDate)}
+                                    let matchedDates = availabilities.filter{$0.times[7 * rowIndex + columnIndex]}
                                     Button(action: {
                                         // Toggle the selected state
                                         selectedRow = rowIndex
@@ -58,9 +57,8 @@ struct PeopleTimesView: View {
                         }
                     }.padding()
                     HStack {
-                        let getDate = calendar.date(byAdding: .minute, value: 30 * selectedRow, to: calendar.date(byAdding: .day, value: selectedColumn, to: startDate)!)!
-                        let matchedDates = availabilities.filter{$0.times.contains(getDate)}
-                        let unmatchedDates = availabilities.filter{!$0.times.contains(getDate)}
+                        let matchedDates = availabilities.filter{$0.times[7 * selectedRow + selectedColumn]}
+                        let unmatchedDates = availabilities.filter{!$0.times[7 * selectedRow + selectedColumn]}
                         Spacer()
                         VStack {
                             Text("Available")

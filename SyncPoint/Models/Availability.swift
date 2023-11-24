@@ -14,7 +14,7 @@ struct Availability: Identifiable, Comparable, Codable {
     @DocumentID var id: String?
     var user: String
     var event: String
-    var times: [[Bool]]
+    var times: [Bool]
     var indicated: Bool
 
 
