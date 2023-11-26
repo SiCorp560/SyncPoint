@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SelectAvailabilityView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var availabilityRepository = AvailabilityRepository()
     var user: User
     var event: Event
@@ -64,6 +65,7 @@ struct SelectAvailabilityView: View {
 //                            }
                             availability.times = selectedSlots
                             availabilityRepository.update(availability)
+                            self.presentationMode.wrappedValue.dismiss()
                         }) {
                             Text("Finish")
                                 .frame(maxWidth: 100)
