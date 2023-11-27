@@ -16,6 +16,8 @@ struct PeopleTimesView: View {
     @State private var selectedRow = 0
     @State private var selectedColumn = 0
     
+    @State private var isShowingPopover = false
+    
     var body: some View {
         NavigationView {
             let startDate = event.earliest_date
@@ -43,9 +45,10 @@ struct PeopleTimesView: View {
                                 ForEach(0..<7, id: \.self) { columnIndex in
                                     let matchedDates = availabilities.filter{$0.times[7 * rowIndex + columnIndex]}
                                     Button(action: {
-                                        // Toggle the selected state
+                                        // Toggle the selected indeces
                                         selectedRow = rowIndex
                                         selectedColumn = columnIndex
+                                        isShowingPopover = true
                                     }) {
                                         RoundedRectangle(cornerRadius: 5)
                                             .stroke(matchedDates.count > 0 ? Color.green : Color.gray, lineWidth: 1)
@@ -56,6 +59,8 @@ struct PeopleTimesView: View {
                             }
                         }
                     }.padding()
+                }
+                .popover(isPresented: $isShowingPopover) {
                     HStack {
                         let matchedDates = availabilities.filter{$0.times[7 * selectedRow + selectedColumn]}
                         let unmatchedDates = availabilities.filter{!$0.times[7 * selectedRow + selectedColumn]}
