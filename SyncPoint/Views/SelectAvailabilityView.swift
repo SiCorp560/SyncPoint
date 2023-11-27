@@ -54,16 +54,8 @@ struct SelectAvailabilityView: View {
                             }
                         }.padding()
                         Button(action: {
-//                            var yesDates: [Date] = Array()
-//                            for rowIndex in 0..<30 {
-//                                for columnIndex in 0..<7 {
-//                                    if selectedSlots[rowIndex][columnIndex] {
-//                                        let currentDate = calendar.date(byAdding: .minute, value: 30 * rowIndex, to: calendar.date(byAdding: .day, value: columnIndex, to: startDate)!)!
-//                                        yesDates.append(currentDate)
-//                                    }
-//                                }
-//                            }
                             availability.times = selectedSlots
+                            availability.indicated = true
                             availabilityRepository.update(availability)
                             self.presentationMode.wrappedValue.dismiss()
                         }) {

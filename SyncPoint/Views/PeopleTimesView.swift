@@ -19,7 +19,7 @@ struct PeopleTimesView: View {
     var body: some View {
         NavigationView {
             let startDate = event.earliest_date
-            var availabilities = availabilityRepository.getByEvent(event.id!)
+            let availabilities = availabilityRepository.getByEvent(event.id!)
             ScrollView {
                 VStack {
                     Text("View People's Times")
