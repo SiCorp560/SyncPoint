@@ -16,10 +16,12 @@ struct PeopleTimesView: View {
     @State private var selectedRow = 0
     @State private var selectedColumn = 0
     
+    @State private var isShowingPopover = false
+    
     var body: some View {
         NavigationView {
             let startDate = event.earliest_date
-            var availabilities = availabilityRepository.getByEvent(event.id!)
+            let availabilities = availabilityRepository.getByEvent(event.id!)
             ScrollView {
                 VStack {
                     Text("View People's Times")
@@ -41,12 +43,12 @@ struct PeopleTimesView: View {
                                     .padding()
                                 Spacer()
                                 ForEach(0..<7, id: \.self) { columnIndex in
-                                    let currentDate = calendar.date(byAdding: .minute, value: 30 * rowIndex, to: calendar.date(byAdding: .day, value: columnIndex, to: startDate)!)!
-                                    let matchedDates = availabilities.filter{$0.times.contains(currentDate)}
+                                    let matchedDates = availabilities.filter{$0.times[7 * rowIndex + columnIndex]}
                                     Button(action: {
-                                        // Toggle the selected state
+                                        // Toggle the selected indeces
                                         selectedRow = rowIndex
                                         selectedColumn = columnIndex
+                                        isShowingPopover = true
                                     }) {
                                         RoundedRectangle(cornerRadius: 5)
                                             .stroke(matchedDates.count > 0 ? Color.green : Color.gray, lineWidth: 1)
@@ -57,10 +59,11 @@ struct PeopleTimesView: View {
                             }
                         }
                     }.padding()
+                }
+                .popover(isPresented: $isShowingPopover) {
                     HStack {
-                        let getDate = calendar.date(byAdding: .minute, value: 30 * selectedRow, to: calendar.date(byAdding: .day, value: selectedColumn, to: startDate)!)!
-                        let matchedDates = availabilities.filter{$0.times.contains(getDate)}
-                        let unmatchedDates = availabilities.filter{!$0.times.contains(getDate)}
+                        let matchedDates = availabilities.filter{$0.times[7 * selectedRow + selectedColumn]}
+                        let unmatchedDates = availabilities.filter{!$0.times[7 * selectedRow + selectedColumn]}
                         Spacer()
                         VStack {
                             Text("Available")

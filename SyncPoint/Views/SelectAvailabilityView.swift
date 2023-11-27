@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct SelectAvailabilityView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var availabilityRepository = AvailabilityRepository()
     var user: User
     var event: Event
+    @State var selectedSlots: [Bool]
     let calendar = Calendar.current
-    
-    @State private var selectedSlots: [[Bool]] = ((Array(repeating: Array(repeating: false, count: 7), count: 30 * 7)))
     
     var body: some View {
         NavigationView {
@@ -42,29 +42,22 @@ struct SelectAvailabilityView: View {
                                     ForEach(0..<7, id: \.self) { columnIndex in
                                         Button(action: {
                                             // Toggle the selected state
-                                            selectedSlots[rowIndex][columnIndex].toggle()
+                                            selectedSlots[7 * rowIndex + columnIndex].toggle()
                                         }) {
                                             RoundedRectangle(cornerRadius: 5)
-                                                .stroke(selectedSlots[rowIndex][columnIndex] ? Color.green : Color.gray, lineWidth: 1)
+                                                .stroke(selectedSlots[7 * rowIndex + columnIndex] ? Color.green : Color.gray, lineWidth: 1)
                                                 .frame(width: 25, height: 25)
-                                                .background(selectedSlots[rowIndex][columnIndex] ? Color.green.opacity(0.5) : Color.clear)
+                                                .background(selectedSlots[7 * rowIndex + columnIndex] ? Color.green.opacity(0.5) : Color.clear)
                                         }
                                     }
                                 }
                             }
                         }.padding()
                         Button(action: {
-                            var yesDates: [Date] = Array()
-                            for rowIndex in 0..<30 {
-                                for columnIndex in 0..<7 {
-                                    if selectedSlots[rowIndex][columnIndex] {
-                                        let currentDate = calendar.date(byAdding: .minute, value: 30 * rowIndex, to: calendar.date(byAdding: .day, value: columnIndex, to: startDate)!)!
-                                        yesDates.append(currentDate)
-                                    }
-                                }
-                            }
-                            availability.times = yesDates
+                            availability.times = selectedSlots
+                            availability.indicated = true
                             availabilityRepository.update(availability)
+                            self.presentationMode.wrappedValue.dismiss()
                         }) {
                             Text("Finish")
                                 .frame(maxWidth: 100)
