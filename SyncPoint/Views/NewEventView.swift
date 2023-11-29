@@ -6,12 +6,17 @@
 //
 import SwiftUI
 
+
+
 struct NewEventView: View {
+  
+  @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   
   //@State var searchField: String = ""
   @State var txt = ""
   //@Binding var data : [UserRepository]
   //@State var displayedUsers = [UserRepository]()
+  
   
   
   @ObservedObject var eventRepository = EventRepository()
@@ -22,12 +27,15 @@ struct NewEventView: View {
   
   var user: User
   
+
   
   @State var navigateToEventDetails = false
   @State private var name: String = ""
   @State private var description: String = ""
   @State private var earliest_date: Date = Date()
   @State private var participants: [String?] = []
+  
+  @State private var eventCreated: Bool = false
   
   
   
@@ -147,6 +155,8 @@ struct NewEventView: View {
         Button("Create Event") {
           
           addEvent()
+          changeEventCreatedStatus()
+          
     
           
         }.padding()
@@ -156,12 +166,14 @@ struct NewEventView: View {
           .frame(maxWidth: .infinity, alignment: .center)
       }
       
-      if self.isValidEvent() {
+      if eventCreated == true {
         
-        Button("Confirm") {
+        Button("Back to Home") {
           
           updateDB()
           clearFields()
+          
+          self.presentationMode.wrappedValue.dismiss()
           
         }.padding()
           .foregroundColor(.white)
@@ -203,10 +215,24 @@ struct NewEventView: View {
         earliest_date = Date()
       }
   
+  
       func updateDB() {
         let event = Event(name:name, description: description, participants: participants, earliest_date: earliest_date, final_meeting_start: Date(), final_meeting_end: Date(), host: user.id)
         
         eventViewModel.updateDB(event, participants)
     
       }
+  
+    private func getEventCreatedStatus() -> Bool {
+      return self.eventCreated
     }
+  
+    private func changeEventCreatedStatus() {
+      self.eventCreated = true
+    }
+  
+
+    }
+
+
+
