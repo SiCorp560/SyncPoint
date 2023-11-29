@@ -18,6 +18,8 @@ class EventViewModel: ObservableObject {
     // add the event to the event respository
     eventRepository.create(event)
     
+    
+    
   }
   
   func updateDB(_ event: Event, _ participants: [String?]) {

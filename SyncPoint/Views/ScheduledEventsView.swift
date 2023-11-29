@@ -7,8 +7,13 @@
 
 import SwiftUI
 
+extension String: Identifiable {
+    public var id: String { self }
+}
+
 struct ScheduledEventsView: View {
   @ObservedObject var eventRepository = EventRepository()
+  @ObservedObject var eventViewModel = EventViewModel()
   var user: User
   
   var body: some View {
@@ -48,8 +53,9 @@ struct ScheduledEventsView: View {
             .font(.title3)
           
           List {
-            ForEach(user.tbd_events.indices) {
-              if let event = eventRepository.getByID(self.user.tbd_events[$0]) {
+            ForEach(user.tbd_events) { tbd_event in
+              let x = print(tbd_event)
+              if let event = eventViewModel.eventRepository.getByID(tbd_event) {
                 NavigationLink(destination: EventDetailsView(user: user, event: event)) {
                   ScheduledRowView(user: user, event: event)
                 }
