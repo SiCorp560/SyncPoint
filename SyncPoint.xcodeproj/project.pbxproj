@@ -14,6 +14,7 @@
 		125484F52B0511F500B42C57 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125484F42B0511F500B42C57 /* AuthenticationViewModel.swift */; };
 		125484F92B0513F400B42C57 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125484F82B0513F400B42C57 /* SignInView.swift */; };
 		1269A8C42B05F6F200DE4385 /* TestHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1269A8C32B05F6F200DE4385 /* TestHomeView.swift */; };
+		1298E7102B16CF2100130A78 /* EditEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1298E70F2B16CF2100130A78 /* EditEventView.swift */; };
 		12B0BDE42AF2D71900BCB724 /* EventRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0BDE32AF2D71900BCB724 /* EventRepository.swift */; };
 		12B0BDE82AF2F8DA00BCB724 /* AvailabilityRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0BDE72AF2F8DA00BCB724 /* AvailabilityRepository.swift */; };
 		12F9DB982AE87FED00B1EC0F /* SyncPointApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F9DB972AE87FED00B1EC0F /* SyncPointApp.swift */; };
@@ -67,6 +68,7 @@
 		125484F42B0511F500B42C57 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		125484F82B0513F400B42C57 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		1269A8C32B05F6F200DE4385 /* TestHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHomeView.swift; sourceTree = "<group>"; };
+		1298E70F2B16CF2100130A78 /* EditEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventView.swift; sourceTree = "<group>"; };
 		12B0BDE32AF2D71900BCB724 /* EventRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepository.swift; sourceTree = "<group>"; };
 		12B0BDE72AF2F8DA00BCB724 /* AvailabilityRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityRepository.swift; sourceTree = "<group>"; };
 		12F9DB942AE87FED00B1EC0F /* SyncPoint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SyncPoint.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -207,6 +209,7 @@
 				A0C42FA02AF7885A003AB121 /* ScheduledRowView.swift */,
 				125484F82B0513F400B42C57 /* SignInView.swift */,
 				1269A8C32B05F6F200DE4385 /* TestHomeView.swift */,
+				1298E70F2B16CF2100130A78 /* EditEventView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				1269A8C42B05F6F200DE4385 /* TestHomeView.swift in Sources */,
 				12F9DB9A2AE87FED00B1EC0F /* ContentView.swift in Sources */,
 				A02FE56D2AF5A34E007E29FA /* ScheduledEventsView.swift in Sources */,
+				1298E7102B16CF2100130A78 /* EditEventView.swift in Sources */,
 				125484F52B0511F500B42C57 /* AuthenticationViewModel.swift in Sources */,
 				A02FE56B2AF5A32A007E29FA /* SelectAvailabilityView.swift in Sources */,
 				12B0BDE42AF2D71900BCB724 /* EventRepository.swift in Sources */,

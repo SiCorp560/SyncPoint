@@ -138,8 +138,13 @@ struct EventDetailsView: View {
             
           }.navigationBarTitle(Text("Event Details"), displayMode: .inline)
           .navigationBarItems(trailing: HStack {
-            Button("Edit") {
-            }
+            NavigationLink(
+              destination: EditEventView(user: user, event: event),
+              label: {
+                Text("Edit")
+                  .font(.caption)
+                  .foregroundColor(.black)
+              })
         })
           
           
