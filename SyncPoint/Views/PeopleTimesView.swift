@@ -44,6 +44,7 @@ struct PeopleTimesView: View {
                                 Spacer()
                                 ForEach(0..<7, id: \.self) { columnIndex in
                                     let matchedDates = availabilities.filter{$0.times[7 * rowIndex + columnIndex]}
+                                    let ratio = Double(matchedDates.count) / Double(availabilities.count)
                                     Button(action: {
                                         // Toggle the selected indeces
                                         selectedRow = rowIndex
@@ -53,7 +54,7 @@ struct PeopleTimesView: View {
                                         RoundedRectangle(cornerRadius: 5)
                                             .stroke(matchedDates.count > 0 ? Color.green : Color.gray, lineWidth: 1)
                                             .frame(width: 25, height: 25)
-                                            .background(matchedDates.count > 0 ? Color.green.opacity(0.5) : Color.clear)
+                                            .background(matchedDates.count > 0 ? Color.green.opacity(0.5 * ratio) : Color.clear)
                                     }
                                 }
                             }
