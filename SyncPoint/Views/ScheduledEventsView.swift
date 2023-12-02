@@ -54,7 +54,6 @@ struct ScheduledEventsView: View {
           
           List {
             ForEach(user.tbd_events) { tbd_event in
-              let x = print(tbd_event)
               if let event = eventViewModel.eventRepository.getByID(tbd_event) {
                 NavigationLink(destination: EventDetailsView(user: user, event: event)) {
                   ScheduledRowView(user: user, event: event)

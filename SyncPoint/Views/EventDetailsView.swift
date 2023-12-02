@@ -7,12 +7,23 @@
 
 import SwiftUI
 
+
+
 struct EventDetailsView: View {
     @ObservedObject var userRepository = UserRepository()
     @ObservedObject var availabilityRepository = AvailabilityRepository()
+  
+    @ObservedObject var eventViewModel = EventViewModel()
+
     var user: User
     var event: Event
     let calendar = Calendar.current
+  
+    @State private var final_meeting_start = Date()
+    @State private var final_meeting_end = Date()
+
+  
+
     
     var body: some View {
         NavigationView {
@@ -136,6 +147,43 @@ struct EventDetailsView: View {
               .padding()
             
             
+            HStack{
+                
+              Text("Select Earliest Date:")
+                .opacity(0.3)
+                
+              DatePicker("", selection: $final_meeting_start, displayedComponents: [.date, .hourAndMinute])
+                  
+            }.padding()
+            .background(Color.gray.opacity(0.1))
+            .cornerRadius(8)
+            
+            
+            HStack{
+                
+              Text("Select Earliest Date:")
+                .opacity(0.3)
+                
+              DatePicker("", selection: $final_meeting_end, displayedComponents: [.date, .hourAndMinute])
+                  
+            }.padding()
+            .background(Color.gray.opacity(0.1))
+            .cornerRadius(8)
+            
+            
+            Button("Finish") {
+              
+              editFinalTime()
+              updateDB()
+                            
+            }.padding()
+              .foregroundColor(.white)
+              .background(Color.green)
+              .cornerRadius(15)
+              .frame(maxWidth: .infinity, alignment: .center)
+
+
+            
           }.navigationBarTitle(Text("Event Details"), displayMode: .inline)
           .navigationBarItems(trailing: HStack {
             NavigationLink(
@@ -152,4 +200,44 @@ struct EventDetailsView: View {
       
         Spacer()// To force the content to the top
     }
+  
+  
+  private func readyToPick() -> Bool {
+    var numberOfIndicated = availabilityRepository.getByEvent(event.id!).filter{$0.indicated}.count
+    var numberOfParticipants = event.participants.count
+    if (numberOfIndicated == numberOfParticipants) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
+  
+  private func editFinalTime() {
+    //event.final_meeting_start = final_meeting_start
+    //event.final_meeting_end = final_meeting_end
+    var thisEvent = eventViewModel.eventRepository.getByID(event.id!)
+    thisEvent?.final_meeting_start = final_meeting_start
+    thisEvent?.final_meeting_end = final_meeting_end
+    eventViewModel.eventRepository.update(thisEvent!)
+
+  }
+  
+  private func updateDB() {
+    //var thisEvent = eventViewModel.eventRepository.getByID(event.id!)
+    let users = userRepository.users
+    for participant in event.participants {
+      var user = users.filter { $0.id == participant }.first
+      user?.upcoming_events.append(event.id!)
+      user?.tbd_events.removeAll{$0 == event.id}
+      userRepository.update(user!)
+
+    }
+
+
+    
+  }
+  
+  
+  
 }
