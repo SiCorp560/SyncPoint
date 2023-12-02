@@ -17,8 +17,23 @@ struct EventDetailsView: View {
     var body: some View {
         NavigationView {
           VStack {
-            // MARK: Event name
+            // MARK: Title and edit
+            HStack(alignment: .center){
+              Text("Event Details")
+                  .fontWeight(.bold)
+                  .font(.title3)
+                  .padding()
+              if event.host == user.id! {
+                NavigationLink(
+                  destination: EditEventView(user: user, event: event),
+                  label: {
+                    Image(systemName: "pencil")
+                      .font(.title3)
+                  })
+              }
+            }
             
+            // MARK: Event name
             Text("Event Name:")
               .font(.headline)
               .foregroundColor(.black)
@@ -117,15 +132,17 @@ struct EventDetailsView: View {
                   })
               }
               
-              NavigationLink(
-                destination: PeopleTimesView(event: event),
-                label: {
-                  Text("View All Times")
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.green)
-                    .cornerRadius(8)
-                })
+              if event.host == user.id! {
+                NavigationLink(
+                  destination: PeopleTimesView(event: event),
+                  label: {
+                    Text("View All Times")
+                      .foregroundColor(.white)
+                      .padding()
+                      .background(Color.green)
+                      .cornerRadius(8)
+                  })
+              }
             }.padding()
             
             Spacer()
@@ -134,22 +151,8 @@ struct EventDetailsView: View {
               .foregroundColor(.black)
               .frame(maxWidth: .infinity, alignment: .leading)
               .padding()
-            
-            
-          }.navigationBarTitle(Text("Event Details"), displayMode: .inline)
-          .navigationBarItems(trailing: HStack {
-            NavigationLink(
-              destination: EditEventView(user: user, event: event),
-              label: {
-                Text("Edit")
-                  .font(.caption)
-                  .foregroundColor(.black)
-              })
-        })
-          
-          
+          }
         }
-      
         Spacer()// To force the content to the top
     }
 }

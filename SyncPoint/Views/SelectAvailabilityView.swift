@@ -25,6 +25,19 @@ struct SelectAvailabilityView: View {
                             .fontWeight(.bold)
                             .font(.title3)
                             .padding()
+                        Button(action: {
+                            availability.times = selectedSlots
+                            availability.indicated = true
+                            availabilityRepository.update(availability)
+                            self.presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Text("Finish")
+                                .frame(maxWidth: 100)
+                                .padding()
+                                .background(Color.green)
+                                .foregroundColor(.white)
+                                .cornerRadius(20)
+                        }
                         VStack (alignment: .trailing){
                             HStack {
                                 ForEach(0..<7, id: \.self) { day in
@@ -53,20 +66,6 @@ struct SelectAvailabilityView: View {
                                 }
                             }
                         }.padding()
-                        Button(action: {
-                            availability.times = selectedSlots
-                            availability.indicated = true
-                            availabilityRepository.update(availability)
-                            self.presentationMode.wrappedValue.dismiss()
-                        }) {
-                            Text("Finish")
-                                .frame(maxWidth: 100)
-                                .padding()
-                                .background(Color.green)
-                                .foregroundColor(.white)
-                                .cornerRadius(20)
-                        }
-                        .padding()
                     }
                 }
             }
