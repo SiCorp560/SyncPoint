@@ -72,8 +72,8 @@ struct ScheduledEventsView: View {
             .padding(EdgeInsets(top: 5, leading: 16, bottom: 5, trailing: 16))
           
           List {
-            ForEach(user.upcoming_events.indices) {
-              if let event = eventRepository.getByID(self.user.upcoming_events[$0]) {
+            ForEach(user.upcoming_events) { upcoming_event in
+              if let event = eventViewModel.eventRepository.getByID(upcoming_event) {
                 NavigationLink(destination: EventDetailsView(user: user, event: event)) {
                   ScheduledRowView(user: user, event: event)
                 }
