@@ -147,40 +147,40 @@ struct EventDetailsView: View {
               .padding()
             
             
-            HStack{
-                
-              Text("Select Earliest Date:")
-                .opacity(0.3)
-                
-              DatePicker("", selection: $final_meeting_start, displayedComponents: [.date, .hourAndMinute])
-                  
-            }.padding()
-            .background(Color.gray.opacity(0.1))
-            .cornerRadius(8)
-            
-            
-            HStack{
-                
-              Text("Select Earliest Date:")
-                .opacity(0.3)
-                
-              DatePicker("", selection: $final_meeting_end, displayedComponents: [.date, .hourAndMinute])
-                  
-            }.padding()
-            .background(Color.gray.opacity(0.1))
-            .cornerRadius(8)
-            
-            
-            Button("Finish") {
-              
-              editFinalTime()
-              updateDB()
-                            
-            }.padding()
-              .foregroundColor(.white)
-              .background(Color.green)
-              .cornerRadius(15)
-              .frame(maxWidth: .infinity, alignment: .center)
+//            HStack{
+//                
+//              Text("Select Earliest Date:")
+//                .opacity(0.3)
+//                
+//              DatePicker("", selection: $final_meeting_start, displayedComponents: [.date, .hourAndMinute])
+//                  
+//            }.padding()
+//            .background(Color.gray.opacity(0.1))
+//            .cornerRadius(8)
+//            
+//            
+//            HStack{
+//                
+//              Text("Select Earliest Date:")
+//                .opacity(0.3)
+//                
+//              DatePicker("", selection: $final_meeting_end, displayedComponents: [.date, .hourAndMinute])
+//                  
+//            }.padding()
+//            .background(Color.gray.opacity(0.1))
+//            .cornerRadius(8)
+//            
+//            
+//            Button("Finish") {
+//              
+//              editFinalTime()
+//              updateDB()
+//                            
+//            }.padding()
+//              .foregroundColor(.white)
+//              .background(Color.green)
+//              .cornerRadius(15)
+//              .frame(maxWidth: .infinity, alignment: .center)
 
 
             
