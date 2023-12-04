@@ -103,19 +103,22 @@ struct EventDetailsView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
               
-              HStack{
-                ForEach(event.participants.indices) {
-                  if let user = userRepository.getByID(self.event.participants[$0]!) {
-                    Text("\(user.first_name)")
-                      .frame(width: 55, height: 35, alignment: .center)
-                      .padding()
-                      .background(
-                        Circle()
-                          .fill(Color.green.opacity(0.2))
-                      ).foregroundColor(.black)
+              ScrollView{
+                HStack{
+                  
+                  ForEach(event.participants.indices) {
+                    if let user = userRepository.getByID(self.event.participants[$0]!) {
+                      Text("\(user.first_name)")
+                        .frame(width: 55, height: 35, alignment: .center)
+                        .padding()
+                        .background(
+                          Circle()
+                            .fill(Color.green.opacity(0.2))
+                        ).foregroundColor(.black)
+                    }
                   }
-                }
-              }.frame(maxWidth: .infinity, alignment: .leading)
+                }.frame(maxWidth: .infinity, alignment: .leading)
+              }
               
               Spacer()
               HStack{
