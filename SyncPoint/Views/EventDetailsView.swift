@@ -29,9 +29,25 @@ struct EventDetailsView: View {
 
     
     var body: some View {
-        NavigationView {
+        NavigationView{
           ScrollView{
             VStack {
+              // MARK: Title and edit
+              HStack(alignment: .center){
+                Text("Event Details")
+                    .fontWeight(.bold)
+                    .font(.title3)
+                    .padding()
+                if event.host == user.id! {
+                  NavigationLink(
+                    destination: EditEventView(user: user, event: event),
+                    label: {
+                      Image(systemName: "pencil")
+                        .font(.title3)
+                    })
+                }
+              }
+
               // MARK: Event name
               
               Text("Event Name:")
@@ -132,51 +148,41 @@ struct EventDetailsView: View {
                     })
                 }
                 
-                NavigationLink(
-                  destination: PeopleTimesView(event: event),
-                  label: {
-                    Text("View All Times")
-                      .foregroundColor(.white)
-                      .padding()
-                      .background(Color.green)
-                      .cornerRadius(8)
-                  })
+                if event.host == user.id! {
+                  NavigationLink(
+                    destination: PeopleTimesView(event: event),
+                    label: {
+                      Text("View All Times")
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.green)
+                        .cornerRadius(8)
+                    })
+                }
               }.padding()
               
               Spacer()
               
               if readyToPick() == true {
-                
                 Text("Choose Final Time:")
                   .font(.headline)
                   .foregroundColor(.black)
                   .frame(maxWidth: .infinity, alignment: .leading)
                   .padding()
-                
-                
                 HStack{
-                  
                   Text("Select start time:")
                     .opacity(0.3)
-                  
                   DatePicker("", selection: $final_meeting_start)
-                  
                 }.padding()
                   .background(Color.gray.opacity(0.1))
                   .cornerRadius(8)
-                
-                
                 HStack{
-                  
                   Text("Select end time:")
                     .opacity(0.3)
-                  
                   DatePicker("", selection: $final_meeting_end)
-                  
                 }.padding()
                   .background(Color.gray.opacity(0.1))
                   .cornerRadius(8)
-                
                 Button(action: {
                   editFinalTime()
                   updateDB()
@@ -190,29 +196,10 @@ struct EventDetailsView: View {
                     .cornerRadius(20)
                 }
                 .padding()
-                
               }
-
-              
             }
-            
-            
-            
-            
-          }.navigationBarTitle(Text("Event Details"), displayMode: .inline)
-          .navigationBarItems(trailing: HStack {
-            NavigationLink(
-              destination: EditEventView(user: user, event: event),
-              label: {
-                Text("Edit")
-                  .font(.caption)
-                  .foregroundColor(.black)
-              })
-        })
-          
-          
+          }
         }
-      
         Spacer()// To force the content to the top
     }
   
@@ -247,13 +234,6 @@ struct EventDetailsView: View {
       user?.upcoming_events.append(event.id!)
       user?.tbd_events.removeAll{$0 == event.id}
       userRepository.update(user!)
-
     }
-
-
-    
   }
-  
-  
-  
 }
