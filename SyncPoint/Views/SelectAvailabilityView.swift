@@ -30,8 +30,8 @@ struct SelectAvailabilityView: View {
                             availability.times = selectedSlots
                             availability.indicated = true
                             availabilityRepository.update(availability)
-                            self.presentationMode.wrappedValue.dismiss()
                             self.selectedAvailabilityNotification()
+                            self.presentationMode.wrappedValue.dismiss()
                         }) {
                             Text("Finish")
                                 .frame(maxWidth: 100)
