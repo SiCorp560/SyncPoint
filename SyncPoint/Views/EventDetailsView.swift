@@ -29,8 +29,9 @@ struct EventDetailsView: View {
 
     
     var body: some View {
-        NavigationView{
+  
           ScrollView{
+            
             VStack {
               // MARK: Title and edit
               HStack(alignment: .center){
@@ -72,6 +73,8 @@ struct EventDetailsView: View {
                 .foregroundColor(.black)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
+              
+              
               if let startDate = event.final_meeting_start, let endDate = event.final_meeting_end {
                 VStack(alignment: .leading) {
                   HStack {
@@ -87,15 +90,24 @@ struct EventDetailsView: View {
                 .padding()
                 .background(Color.green.opacity(0.2))
                 .cornerRadius(8)
-              } else {
-                HStack{
-                  Image(systemName: "calendar")
-                  Text("TBD")
-                }
-                HStack{
-                  Image(systemName: "clock")
-                  Text("TBD")
-                }
+              } 
+              
+              
+              else {
+                VStack{
+                  HStack{
+                    Image(systemName: "calendar")
+                    Text("TBD")
+                  }
+                  HStack{
+                    Image(systemName: "clock")
+                    Text("TBD")
+                  }
+              }
+              .frame(maxWidth: 340, alignment: .leading)
+              .padding()
+              .background(Color.green.opacity(0.2))
+              .cornerRadius(8)
               }
               
               Spacer()
@@ -205,7 +217,7 @@ struct EventDetailsView: View {
               }
             }
           }
-        }
+        
         Spacer()// To force the content to the top
     }
   
