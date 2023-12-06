@@ -37,20 +37,22 @@ struct PeopleTimesView: View {
                       ForEach(0..<7, id: \.self) { day in
                         
                         Text(calendar.date(byAdding: .day, value: day, to: startDate)!
-                          .formatted(Date.FormatStyle().day().month()))
-                        .font(.system(size: 12))
+                        .formatted(Date.FormatStyle().day().month()))
+                          .frame(width: 34, alignment: .center)
+                          .font(.system(size: 14))
                         
                       }
                     }
                     
                     
-                      ForEach(0..<30, id: \.self) { rowIndex in
+                      ForEach(0..<17, id: \.self) { rowIndex in
                           
                         HStack {
                               
                           Text(calendar.date(byAdding: .minute, value: 30 * rowIndex, to: startDate)!
                           .formatted(date: .omitted, time:.shortened))
-                          .frame(width: 75, alignment: .leading)
+                          .font(.system(size: 14))
+                          .frame(width: 75, alignment: .trailing)
                           
                             Spacer()
                               

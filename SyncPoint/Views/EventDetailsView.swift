@@ -29,9 +29,30 @@ struct EventDetailsView: View {
 
     
     var body: some View {
-        NavigationView {
-          ScrollView{
+        
+      NavigationView {
+          
+        ScrollView{
+          
             VStack {
+              // MARK: Title and edit
+              
+              HStack(alignment: .center){
+                Text("Event Details")
+                    .fontWeight(.bold)
+                    .font(.title3)
+                    .padding()
+                
+                if event.host == user.id! {
+                  NavigationLink(
+                    destination: EditEventView(user: user, event: event),
+                    label: {
+                      Image(systemName: "pencil")
+                        .font(.title3)
+                    })
+                }
+              }
+
               // MARK: Event name
               
               Text("Event Name:")
@@ -56,7 +77,9 @@ struct EventDetailsView: View {
                 .foregroundColor(.black)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
+              
               if let startDate = event.final_meeting_start, let endDate = event.final_meeting_end {
+                
                 VStack(alignment: .leading) {
                   HStack {
                     Image(systemName: "calendar")
@@ -71,15 +94,27 @@ struct EventDetailsView: View {
                 .padding()
                 .background(Color.green.opacity(0.2))
                 .cornerRadius(8)
-              } else {
-                HStack{
-                  Image(systemName: "calendar")
-                  Text("TBD")
+                
+              }
+              
+              else {
+                
+                VStack(alignment: .leading) {
+                  HStack{
+                    Image(systemName: "calendar")
+                    Text("TBD")
+                  }
+                  HStack{
+                    Image(systemName: "clock")
+                    Text("TBD")
+                  }
                 }
-                HStack{
-                  Image(systemName: "clock")
-                  Text("TBD")
-                }
+                .frame(maxWidth: 340, alignment: .leading)
+                .padding()
+                .background(Color.green.opacity(0.2))
+                .cornerRadius(8)
+                
+                
               }
               
               Spacer()
@@ -103,9 +138,8 @@ struct EventDetailsView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
               
-              ScrollView{
+              ScrollView (.horizontal) {
                 HStack{
-                  
                   ForEach(event.participants.indices) {
                     if let user = userRepository.getByID(self.event.participants[$0]!) {
                       Text("\(user.first_name)")
@@ -135,51 +169,41 @@ struct EventDetailsView: View {
                     })
                 }
                 
-                NavigationLink(
-                  destination: PeopleTimesView(event: event),
-                  label: {
-                    Text("View All Times")
-                      .foregroundColor(.white)
-                      .padding()
-                      .background(Color.green)
-                      .cornerRadius(8)
-                  })
+                if event.host == user.id! {
+                  NavigationLink(
+                    destination: PeopleTimesView(event: event),
+                    label: {
+                      Text("View All Times")
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.green)
+                        .cornerRadius(8)
+                    })
+                }
               }.padding()
               
               Spacer()
               
               if readyToPick() == true {
-                
                 Text("Choose Final Time:")
                   .font(.headline)
                   .foregroundColor(.black)
                   .frame(maxWidth: .infinity, alignment: .leading)
                   .padding()
-                
-                
                 HStack{
-                  
                   Text("Select start time:")
                     .opacity(0.3)
-                  
                   DatePicker("", selection: $final_meeting_start)
-                  
                 }.padding()
                   .background(Color.gray.opacity(0.1))
                   .cornerRadius(8)
-                
-                
                 HStack{
-                  
                   Text("Select end time:")
                     .opacity(0.3)
-                  
                   DatePicker("", selection: $final_meeting_end)
-                  
                 }.padding()
                   .background(Color.gray.opacity(0.1))
                   .cornerRadius(8)
-                
                 Button(action: {
                   editFinalTime()
                   updateDB()
@@ -193,28 +217,10 @@ struct EventDetailsView: View {
                     .cornerRadius(20)
                 }
                 .padding()
-                
               }
-
-              
             }
-            
-            
-            
-            
-          }.navigationBarTitle(Text("Event Details"), displayMode: .inline)
-          .navigationBarItems(trailing: HStack {
-            NavigationLink(
-              destination: EditEventView(user: user, event: event),
-              label: {
-                Text("Edit")
-                  .font(.caption)
-                  .foregroundColor(.black)
-              })
-        })
-          
-          
-        }
+          }
+      }
       
         Spacer()// To force the content to the top
     }
@@ -250,13 +256,6 @@ struct EventDetailsView: View {
       user?.upcoming_events.append(event.id!)
       user?.tbd_events.removeAll{$0 == event.id}
       userRepository.update(user!)
-
     }
-
-
-    
   }
-  
-  
-  
 }
