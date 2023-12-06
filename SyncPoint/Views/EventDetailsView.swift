@@ -162,40 +162,46 @@ struct EventDetailsView: View {
               }.padding()
               
               Spacer()
-              
-              if readyToPick() == true {
-                Text("Choose Final Time:")
-                  .font(.headline)
-                  .foregroundColor(.black)
-                  .frame(maxWidth: .infinity, alignment: .leading)
-                  .padding()
-                HStack{
-                  Text("Select start time:")
-                    .opacity(0.3)
-                  DatePicker("", selection: $final_meeting_start)
-                }.padding()
-                  .background(Color.gray.opacity(0.1))
-                  .cornerRadius(8)
-                HStack{
-                  Text("Select end time:")
-                    .opacity(0.3)
-                  DatePicker("", selection: $final_meeting_end)
-                }.padding()
-                  .background(Color.gray.opacity(0.1))
-                  .cornerRadius(8)
-                Button(action: {
-                  editFinalTime()
-                  updateDB()
-                  self.presentationMode.wrappedValue.dismiss()
-                }) {
-                  Text("Finish")
-                    .frame(maxWidth: 100)
+              if user.id! == event.host {
+                
+                if readyToPick() == true {
+                  if event.final_meeting_start == nil {
+                    
+                    
+                    Text("Choose Final Time:")
+                      .font(.headline)
+                      .foregroundColor(.black)
+                      .frame(maxWidth: .infinity, alignment: .leading)
+                      .padding()
+                    HStack{
+                      Text("Select start time:")
+                        .opacity(0.3)
+                      DatePicker("", selection: $final_meeting_start)
+                    }.padding()
+                      .background(Color.gray.opacity(0.1))
+                      .cornerRadius(8)
+                    HStack{
+                      Text("Select end time:")
+                        .opacity(0.3)
+                      DatePicker("", selection: $final_meeting_end)
+                    }.padding()
+                      .background(Color.gray.opacity(0.1))
+                      .cornerRadius(8)
+                    Button(action: {
+                      editFinalTime()
+                      updateDB()
+                      self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                      Text("Finish")
+                        .frame(maxWidth: 100)
+                        .padding()
+                        .background(Color.green)
+                        .foregroundColor(.white)
+                        .cornerRadius(20)
+                    }
                     .padding()
-                    .background(Color.green)
-                    .foregroundColor(.white)
-                    .cornerRadius(20)
+                  }
                 }
-                .padding()
               }
             }
           }
