@@ -171,6 +171,7 @@ struct NewEventView: View {
         Button("Back to Home") {
           
           updateDB()
+          newEventNotification()
           clearFields()
           
           self.presentationMode.wrappedValue.dismiss()
@@ -230,6 +231,18 @@ struct NewEventView: View {
     private func changeEventCreatedStatus() {
       self.eventCreated = true
     }
+  
+  private func newEventNotification() {
+    let msg = "\(user.first_name) has invited you to event: \(name)"
+    for participant in participants {
+      if participant != user.id {
+        var thisUser = userRepository.getByID(participant!)
+        thisUser?.notifications.insert(msg, at: 0)
+        userRepository.update(thisUser!)
+      }
+    }
+  }
+
   
 
     }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SelectAvailabilityView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @ObservedObject var userRepository = UserRepository()
     @ObservedObject var availabilityRepository = AvailabilityRepository()
     var user: User
     var event: Event
@@ -30,6 +31,7 @@ struct SelectAvailabilityView: View {
                             availability.indicated = true
                             availabilityRepository.update(availability)
                             self.presentationMode.wrappedValue.dismiss()
+                            self.selectedAvailabilityNotification()
                         }) {
                             Text("Finish")
                                 .frame(maxWidth: 100)
@@ -71,4 +73,25 @@ struct SelectAvailabilityView: View {
             }
         }
     }
+  
+  private func selectedAvailabilityNotification() {
+//    print("YESSS")
+//    let availabilities = availabilityRepository.getByEvent(event.id!)
+//    for availability in availabilities {
+//      if availability.indicated == false {
+//        print("THIS")
+//        return
+//      }
+//    }
+//    print("HERE")
+//    var eventHost = userRepository.getByID(event.host!)
+//    eventHost?.notifications.append(msg)
+//    userRepository.update(eventHost!)
+    if user.id! != event.host {
+      let msg = "\(user.first_name) selected their availability for event: \(event.name)"
+      var eventHost = userRepository.getByID(event.host!)
+      eventHost?.notifications.insert(msg, at: 0)
+      userRepository.update(eventHost!)
+    }
+  }
 }

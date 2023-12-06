@@ -190,6 +190,7 @@ struct EventDetailsView: View {
                     Button(action: {
                       editFinalTime()
                       updateDB()
+                      finalTimeChosenNotification()
                       self.presentationMode.wrappedValue.dismiss()
                     }) {
                       Text("Finish")
@@ -242,4 +243,18 @@ struct EventDetailsView: View {
       userRepository.update(user!)
     }
   }
+  
+  private func finalTimeChosenNotification() {
+    let msg = "The final time has been chosen for event: \(event.name)"
+    var participants = event.participants
+    for participant in participants {
+      if participant != user.id {
+        var thisUser = userRepository.getByID(participant!)
+        thisUser?.notifications.insert(msg, at:0)
+        userRepository.update(thisUser!)
+      }
+    }
+  }
+  
+
 }
