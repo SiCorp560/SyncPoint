@@ -210,7 +210,7 @@ struct EventDetailsView: View {
     }
   
   
-  private func readyToPick() -> Bool {
+  func readyToPick() -> Bool {
     var numberOfIndicated = availabilityRepository.getByEvent(event.id!).filter{$0.indicated}.count
     var numberOfParticipants = event.participants.count
     
