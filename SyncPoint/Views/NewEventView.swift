@@ -188,7 +188,7 @@ struct NewEventView: View {
 }
 
   
-    private func isValidEvent() -> Bool {
+    func isValidEvent() -> Bool {
         if name.isEmpty { return false }
         if description.isEmpty { return false }
         if participants.isEmpty { return false }
@@ -208,7 +208,7 @@ struct NewEventView: View {
         eventViewModel.add(event, participants)
       }
   
-      private func clearFields() {
+      func clearFields() {
         name = ""
         description = ""
         participants = [String?]()
@@ -223,14 +223,29 @@ struct NewEventView: View {
     
       }
   
-    private func getEventCreatedStatus() -> Bool {
+    func getEventCreatedStatus() -> Bool {
       return self.eventCreated
     }
   
-    private func changeEventCreatedStatus() {
+    func changeEventCreatedStatus() {
       self.eventCreated = true
     }
-  
+    
+    func getName() -> String {
+        return self.name
+    }
+    
+    func getDescription() -> String {
+        return self.description
+    }
+    
+    func getEarliestDate() -> Date {
+        return self.earliest_date
+    }
+    
+    func getParticipants() -> [String?] {
+        return self.participants
+    }
 
     }
 

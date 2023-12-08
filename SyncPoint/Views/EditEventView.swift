@@ -110,7 +110,7 @@ struct EditEventView: View {
     }.navigationBarTitle("Edit Event", displayMode: .inline)
   }
 
-  private func isValidEdit() -> Bool {
+  func isValidEdit() -> Bool {
     if name.isEmpty { return false }
     if description.isEmpty { return false }
     return true
