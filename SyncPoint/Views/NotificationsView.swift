@@ -7,12 +7,14 @@
 
 import SwiftUI
 
-struct NotificationsView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
 
-#Preview {
-    NotificationsView()
+
+struct NotificationsView: View {
+  
+  var user: User
+  var body: some View {
+    List(user.notifications, id: \.self) { notification in
+      Text(notification)
+    }
+  }
 }
