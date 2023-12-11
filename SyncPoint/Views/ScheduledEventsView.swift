@@ -12,76 +12,88 @@ extension String: Identifiable {
 }
 
 struct ScheduledEventsView: View {
+  @EnvironmentObject var authViewModel: AuthenticationViewModel
+  
   @ObservedObject var eventRepository = EventRepository()
   @ObservedObject var eventViewModel = EventViewModel()
   var user: User
   
   var body: some View {
-    NavigationView{
-      VStack {
-        VStack(alignment: .leading) {
-          // MARK: "To Be Scheduled" events
+    NavigationView {
+      
+      ZStack(alignment: .bottomTrailing) {
+        
+        VStack (alignment: .leading){
           
-          HStack {
-            
-            Text("SYNCPOINT")
+          
+          
+          // MARK: "To Be Scheduled" events
+          HStack{
+            Text("To Be Scheduled")
               .fontWeight(.bold)
-              .font(.title)
+              .font(.title3)
+              .padding(EdgeInsets(top: 5, leading: 16, bottom: 5, trailing: 16))
             
             Spacer()
             
-            NavigationLink(
-              destination: NewEventView(user: user),
-              label: {
-                Image(systemName: "plus")
-                  .padding()
-                  .foregroundColor(.white)
-                  .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                  .font(.title)
-                  .background(Circle().fill(Color.green).cornerRadius(15)
-                    .frame(width:60, height:60))
-                
-              })
-          }.padding()
+            Menu {
+              Button(action: authViewModel.signOut) {
+                Text("Sign Out")
+                  .foregroundColor(.blue) // Set the color to blue
+              }
+            } label: {
+              Image(systemName: "ellipsis").foregroundColor(.green)
+            }.padding()
+          }
           
-          
-        }
-        
-        VStack (alignment: .leading, spacing: 10){
-          Text("To Be Scheduled")
-            .fontWeight(.bold)
-            .font(.title3)
-          
-          List {
-            ForEach(user.tbd_events) { tbd_event in
-              if let event = eventViewModel.eventRepository.getByID(tbd_event) {
-                NavigationLink(destination: EventDetailsView(user: user, event: event)) {
-                  ScheduledRowView(user: user, event: event)
+          ScrollView {
+            VStack {
+              ForEach(user.tbd_events) { tbd_event in
+                if let event = eventViewModel.eventRepository.getByID(tbd_event) {
+                  NavigationLink(destination: EventDetailsView(user: user, event: event)) {
+                    ScheduledRowView(user: user, event: event)
+                  }
                 }
               }
-            }
+            }.padding()
           }
-        }.padding()
-        
-        // MARK: "Upcoming" events
-        VStack (alignment: .leading, spacing: 10){
+          
+          Divider()
           
           Text("Upcoming")
             .fontWeight(.bold)
             .font(.title3)
             .padding(EdgeInsets(top: 5, leading: 16, bottom: 5, trailing: 16))
           
-          List {
-            ForEach(user.upcoming_events) { upcoming_event in
-              if let event = eventViewModel.eventRepository.getByID(upcoming_event) {
-                NavigationLink(destination: EventDetailsView(user: user, event: event)) {
-                  ScheduledRowView(user: user, event: event)
+          
+          ScrollView {
+            VStack {
+              ForEach(user.upcoming_events) { upcoming_event in
+                if let event = eventViewModel.eventRepository.getByID(upcoming_event) {
+                  NavigationLink(destination: EventDetailsView(user: user, event: event)) {
+                    ScheduledRowView(user: user, event: event)
+                  }
                 }
               }
-            }
+            }.padding()
           }
-        }
-        Spacer()
+          
+        }.padding(.bottom, 50)
+        
+        // Floating action button
+        NavigationLink(
+          destination: NewEventView(user: user),
+          label: {
+            Image(systemName: "plus")
+              .font(.title.weight(.semibold))
+              .padding()
+              .background(Color.green)
+              .foregroundColor(.white)
+              .clipShape(Circle())
+              .shadow(radius: 4, x: 0, y: 4)
+              .padding()
+          }
+        )
       }
     }.onAppear(perform: loadData)
   }

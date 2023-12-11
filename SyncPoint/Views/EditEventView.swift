@@ -25,9 +25,13 @@ struct EditEventView: View {
   
   var body: some View {
     @State var displayedUsers = userRepository.users
+    
     NavigationView {
-      VStack {
-        Text("Event Details").bold()
+      
+      VStack(alignment: .leading) {
+        
+
+        
         TextField("Title", text: $name)
           .onAppear() {
             self.name = event.name
@@ -46,6 +50,7 @@ struct EditEventView: View {
           .opacity(3)
           .background(Color.gray.opacity(0.1))
           .cornerRadius(8)
+        
         HStack{
           TextField("Search to add participants", text: self.$txt)
             .opacity(3)
@@ -60,6 +65,7 @@ struct EditEventView: View {
         }.padding()
           .background(Color.gray.opacity(0.1))
           .cornerRadius(8)
+        
         if self.txt != "" {
           if displayedUsers.filter({$0.first_name.lowercased().contains(self.txt.lowercased())}).count == 0 {
             Text("No Results Found").foregroundColor(Color.black.opacity(0.5)).padding()
@@ -78,18 +84,35 @@ struct EditEventView: View {
             }.frame(height: UIScreen.main.bounds.height / 5)
           }
         }
-        Text("Participants").bold()
-        List(participants.compactMap { $0 }, id: \.self) { userId in
-          if let user_ad = userRepository.getByID(userId) {
-            if user_ad.first_name == user.first_name {
-              Text("\(user_ad.first_name) (Host)")
-            } else {
-              Text(user_ad.first_name)
+        
+        if participants != [] {
+          ScrollView{
+            
+            VStack (alignment: .leading) {
+              
+              
+              Text("Participants").bold()
+              
+              Divider()
+              ForEach(participants.compactMap { $0 }, id: \.self) { userId in
+                if let user_ad = userRepository.getByID(userId) {
+                  if user_ad.first_name == user.first_name {
+                    Text("\(user_ad.first_name) (Host)")
+                  } else {
+                    Text(user_ad.first_name)
+                  }
+                } else {
+                  Text("Unknown User")
+                }
+                Divider()
+              }
             }
-          } else {
-            Text("Unknown User")
+            .padding()
+            .background(Color.gray.opacity(0.1))
+            .cornerRadius(8)
           }
-        }.frame(height: UIScreen.main.bounds.height / 5)
+        }
+        
         Spacer()
         if self.isValidEdit() {
           Button("Confirm") {
@@ -103,7 +126,7 @@ struct EditEventView: View {
           }.padding()
             .foregroundColor(.white)
             .background(Color.green)
-            .cornerRadius(15)
+            .cornerRadius(.infinity)
             .frame(maxWidth: .infinity, alignment: .center)
         }
       }.padding()

@@ -43,149 +43,156 @@ struct NewEventView: View {
     
     @State var displayedUsers = userRepository.users
     
+    
+    
     NavigationView {
       
       VStack {
-      
-      Text("Event Details").bold()
-      
-      TextField("Add title", text: $name)
-        .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-        .foregroundColor(.black)
-        .opacity(3)
-        .background(Color.gray.opacity(0.1))
-        .cornerRadius(8)
         
-      TextField("Add Description", text: $description)
-        .padding()
-        .foregroundColor(.black)
-        .opacity(3)
-        .background(Color.gray.opacity(0.1))
-        .cornerRadius(8)
-      
-  
-      HStack{
-          
-        Text("Select Earliest Date:")
-          .opacity(0.3)
-          
-        DatePicker("", selection: $earliest_date, displayedComponents: .date)
-            
-      }.padding()
-      .background(Color.gray.opacity(0.1))
-      .cornerRadius(8)
-
-      HStack{
         
-        TextField("Search to add participants", text: self.$txt)
+        TextField("Add title", text: $name)
+          .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+          .foregroundColor(.black)
           .opacity(3)
-          
+          .background(Color.gray.opacity(0.1))
+          .cornerRadius(8)
         
-        if self.txt != ""{
+        TextField("Add Description", text: $description)
+          .padding()
+          .foregroundColor(.black)
+          .opacity(3)
+          .background(Color.gray.opacity(0.1))
+          .cornerRadius(8)
+        
+        
+        HStack{
           
-          Button(action: {
+          Text("Select Earliest Date:")
+            .opacity(0.3)
+          
+          DatePicker("", selection: $earliest_date, displayedComponents: .date)
+          
+        }.padding()
+          .background(Color.gray.opacity(0.1))
+          .cornerRadius(8)
+        
+        HStack{
+          
+          TextField("Search to add participants", text: self.$txt)
+            .opacity(3)
+          
+          
+          if self.txt != ""{
             
-            self.txt = ""
+            Button(action: {
+              
+              self.txt = ""
+              
+            }) {
+              
+              Text("Cancel")
+            }
+            .foregroundColor(.blue)
             
-          }) {
-            
-            Text("Cancel")
           }
-          .foregroundColor(.blue)
-
-        }
+          
+        }.padding()
+          .background(Color.gray.opacity(0.1))
+          .cornerRadius(8)
         
-      }.padding()
-       .background(Color.gray.opacity(0.1))
-       .cornerRadius(8)
-      
-      if self.txt != "" {
-        if displayedUsers.filter({$0.first_name.lowercased().contains(self.txt.lowercased())}).count == 0 {
-          Text("No Results Found").foregroundColor(Color.black.opacity(0.5)).padding()
-        } else {
-          List(displayedUsers.filter{$0.first_name.lowercased().contains(self.txt.lowercased())}) { displayedUser in
+        if self.txt != "" {
+          
+          if displayedUsers.filter({$0.first_name.lowercased().contains(self.txt.lowercased())}).count == 0 {
+            Text("No Results Found").foregroundColor(Color.black.opacity(0.5)).padding()
+          } else {
             
-            if user.id != displayedUser.id {
-              Text(displayedUser.first_name)
-                .onTapGesture {
-                  if let userId = displayedUser.id {
-                    if !participants.contains (userId) {
-                      self.participants.append(userId)
-                      
-                      if !participants.contains(user.id) {
-                        participants.append(user.id)
+            List(displayedUsers.filter{$0.first_name.lowercased().contains(self.txt.lowercased())}) { displayedUser in
+              
+              if user.id != displayedUser.id {
+                Text(displayedUser.first_name)
+                  .onTapGesture {
+                    if let userId = displayedUser.id {
+                      if !participants.contains (userId) {
+                        self.participants.append(userId)
+                        
+                        if !participants.contains(user.id) {
+                          participants.append(user.id)
+                        }
+                        
                       }
-                      
                     }
                   }
-                }
-            }
-          }.frame(height: UIScreen.main.bounds.height / 5)
+              }
+            }.frame(height: UIScreen.main.bounds.height / 5)
+          }
+          
         }
         
-      }
-      
-    Text("Participants").bold()
-        
-      
-      List(participants.compactMap { $0 }, id: \.self) { userId in
-        
-        if let user_ad = userRepository.getByID(userId) {
-          
-          if user_ad.first_name == user.first_name {
+        if participants != [] {
+          ScrollView{
             
-            Text("\(user_ad.first_name) (Host)")
-
+            VStack (alignment: .leading) {
+              
+              
+              Text("Participants").bold()
+              
+              Divider()
+              ForEach(participants.compactMap { $0 }, id: \.self) { userId in
+                if let user_ad = userRepository.getByID(userId) {
+                  if user_ad.first_name == user.first_name {
+                    Text("\(user_ad.first_name) (Host)")
+                  } else {
+                    Text(user_ad.first_name)
+                  }
+                } else {
+                  Text("Unknown User")
+                }
+                Divider()
+              }
+            }
+            .padding()
+            .background(Color.gray.opacity(0.1))
+            .cornerRadius(8)
           }
-          else{
-            Text(user_ad.first_name)
-          }
-          
         }
         
-        else {
-          Text("Unknown User")
+        Spacer()
+        
+        if self.isValidEvent() {
+          Button("Create Event") {
+            
+            addEvent()
+            changeEventCreatedStatus()
+          
+            
+          }.padding()
+            .foregroundColor(.white)
+            .background(Color.green)
+            .cornerRadius(.infinity)
+            .frame(maxWidth: .infinity, alignment: .center)
         }
         
-      }.frame(height: UIScreen.main.bounds.height / 5)
-      
-      Spacer()
-      
-      if self.isValidEvent() {
-        Button("Create Event") {
+        if eventCreated == true {
           
-          addEvent()
-          changeEventCreatedStatus()
-          
-    
-          
-        }.padding()
-          .foregroundColor(.white)
-          .background(Color.green)
-          .cornerRadius(15)
-          .frame(maxWidth: .infinity, alignment: .center)
-      }
-      
-      if eventCreated == true {
-        
-        Button("Back to Home") {
-          
-          updateDB()
-          clearFields()
-          
-          self.presentationMode.wrappedValue.dismiss()
-          
-        }.padding()
-          .foregroundColor(.white)
-          .background(Color.green)
-          .cornerRadius(15)
-          .frame(maxWidth: .infinity, alignment: .center)
-      }
+          Button("Back to Home") {
+            
+            updateDB()
+            clearFields()
+            
+            self.presentationMode.wrappedValue.dismiss()
+            
+          }.padding()
+            .foregroundColor(.white)
+            .background(Color.green)
+            .cornerRadius(.infinity)
+            .frame(maxWidth: .infinity, alignment: .center)
+        }
       }.padding()
-  }.navigationBarTitle("New Event", displayMode: .inline)
-  
-  
-}
+      
+    }.navigationBarTitle("New Event", displayMode: .inline)
+    
+    
+  }
 
   
     func isValidEvent() -> Bool {
@@ -199,10 +206,15 @@ struct NewEventView: View {
   
       private func addEvent() {
         // add the event to the events repository
-        var components = Calendar.current.dateComponents([.day], from: earliest_date)
-        components.hour = 8
+        
+        var components = Calendar.current.dateComponents([.year, .month, .day], from: earliest_date)
+        
+        components.hour = 9
         components.minute = 0
+        components.second = 0
+        
         let setDate = Calendar.current.date(from: components)
+        
         let event = Event(name:name, description: description, participants: participants, earliest_date: setDate!, final_meeting_start: nil, final_meeting_end: nil, host: user.id)
         
         eventViewModel.add(event, participants)
@@ -248,6 +260,7 @@ struct NewEventView: View {
     }
 
     }
+
 
 
 
