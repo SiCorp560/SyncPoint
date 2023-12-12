@@ -45,7 +45,7 @@ Availabilities: struct representing the available times of a user for a particul
 * id: unique String variable that identifies the availability. Automatically created when availability is added to Firebase.
 * user: String variable matching the ID of the relevant User.
 * event: String variable matching the ID of the relevant Event.
-* * times: list of Booleans that the user has filled out being able to attend the event.
+* times: list of Booleans that the user has filled out being able to attend the event.
 * indicated: Boolean variable indicating whether availability has been filled out.
 
 We had initially planned to implement access to the user's phone contacts, with that being the way to add participants to an event. However, with the addition of Google sign-in, we realized that accessing phone numbers when users had no guarantee of having a Google email was unreasonable. Instead, we decided to allow all users to be able to add any participant that has been registered on Firebase. The pool for this remains very small thanks to the necessity of a Gmail account.
