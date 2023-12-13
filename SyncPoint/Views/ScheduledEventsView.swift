@@ -52,10 +52,16 @@ struct ScheduledEventsView: View {
                 if let event = eventViewModel.eventRepository.getByID(tbd_event) {
                   NavigationLink(destination: EventDetailsView(user: user, event: event)) {
                     ScheduledRowView(user: user, event: event)
+                      .overlay(
+                        RoundedRectangle(cornerRadius: 10) // Set the corner radius as needed
+                          .stroke(Color.green, lineWidth: 2) // Green border with a width of 2
+                      )
+                    
                   }
                 }
               }
-            }.padding()
+            }
+            .padding()
           }
           
           Divider()
@@ -72,6 +78,11 @@ struct ScheduledEventsView: View {
                 if let event = eventViewModel.eventRepository.getByID(upcoming_event) {
                   NavigationLink(destination: EventDetailsView(user: user, event: event)) {
                     ScheduledRowView(user: user, event: event)
+                      .overlay(
+                        RoundedRectangle(cornerRadius: 10) // Set the corner radius as needed
+                          .stroke(Color.green, lineWidth: 2) // Green border with a width of 2
+                      )
+                    
                   }
                 }
               }

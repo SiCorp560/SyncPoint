@@ -102,6 +102,7 @@ struct NewEventView: View {
         
         if self.txt != "" {
           
+          
           if displayedUsers.filter({$0.first_name.lowercased().contains(self.txt.lowercased())}).count == 0 {
             Text("No Results Found").foregroundColor(Color.black.opacity(0.5)).padding()
           } else {

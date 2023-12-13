@@ -14,6 +14,8 @@ struct SignInView: View {
     var body: some View {
         VStack {
             Spacer()
+          
+          
             
             Text("SYNCPOINT")
                 .font(.custom("Copperplate", size: 58))
