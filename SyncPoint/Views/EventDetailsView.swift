@@ -180,35 +180,38 @@ struct EventDetailsView: View {
         }.padding()
         
         Spacer()
+        
         if user.id! == event.host {
           
           if readyToPick() == true {
             if event.final_meeting_start == nil {
               
-              
-              Text("Choose Final Time:")
-                .font(.headline)
-                .foregroundColor(.black)
-                .frame(maxWidth: .infinity, alignment: .leading)
+              VStack{
+                
+                Text("Choose Final Time:")
+                  .font(.headline)
+                  .foregroundColor(.black)
+                  .frame(maxWidth: .infinity, alignment: .leading)
+                  .padding()
+                
+                
+                HStack{
+                  Text("Select start time:") .opacity(0.3)
+                  DatePicker("", selection: $final_meeting_start)
+                }
                 .padding()
-              
-              
-              HStack{
-                Text("Select start time:")
-                  .opacity(0.3)
-                DatePicker("", selection: $final_meeting_start)
-              }
-              .padding()
-              .background(Color.gray.opacity(0.1))
-              .cornerRadius(8)
-              
-              HStack{
-                Text("Select end time:")
-                  .opacity(0.3)
-                DatePicker("", selection: $final_meeting_end)
-              }.padding()
                 .background(Color.gray.opacity(0.1))
                 .cornerRadius(8)
+                
+                HStack{
+                  Text("Select end time:")
+                    .opacity(0.3)
+                  DatePicker("", selection: $final_meeting_end)
+                }.padding()
+                  .background(Color.gray.opacity(0.1))
+                  .cornerRadius(8)
+                
+              }.padding()
               
               
               
