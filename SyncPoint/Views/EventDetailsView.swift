@@ -127,106 +127,110 @@ struct EventDetailsView: View {
         
         // MARK: Participants
         
-        ScrollView{
-          HStack {
-              ForEach(event.participants.indices) { index in
-                  if let user = userRepository.getByID(event.participants[index]!) {
-                      VStack {
-                          Image(systemName: "person.crop.circle.fill")
-                          .font(.system(size: 40))
-                          .foregroundColor(.green.opacity(0.5))
-                          .frame(width: 55, height: 55)
-                          .padding(8)
-                              
+        Group {
+            ScrollView{
+              HStack {
+                  ForEach(event.participants.indices) { index in
+                      if let user = userRepository.getByID(event.participants[index]!) {
+                          VStack {
+                              Image(systemName: "person.crop.circle.fill")
+                              .font(.system(size: 40))
+                              .foregroundColor(.green.opacity(0.5))
+                              .frame(width: 55, height: 55)
+                              .padding(8)
+                                  
 
-                          Text(user.first_name)
-                              .foregroundColor(.black)
-                              .frame(width: 55, height: 20, alignment: .center)
+                              Text(user.first_name)
+                                  .foregroundColor(.black)
+                                  .frame(width: 55, height: 20, alignment: .center)
+                          }
                       }
                   }
-              }
-          }.padding()
-          .frame(maxWidth: .infinity, alignment: .leading)
-          
-        }
-        
-        Spacer()
-        
-        HStack{
-          // MARK: Navigation to other features
-          if let availability = availabilityRepository.getByBoth(user.id ?? "", event.id ?? "") {
-            NavigationLink(
-              destination: SelectAvailabilityView(user: user, event: event, selectedSlots: availability.times),
-              label: {
-                Text("Select Availability")
-                  .foregroundColor(.white)
-                  .padding()
-                  .background(Color.green)
-                  .cornerRadius(.infinity)
-              })
-          }
-          
-          if event.host == user.id! {
-            NavigationLink(
-              destination: PeopleTimesView(event: event),
-              label: {
-                Text("View All Times")
-                  .foregroundColor(.white)
-                  .padding()
-                  .background(Color.green)
-                  .cornerRadius(.infinity)
-              })
-          }
-        }.padding()
-        
-        Spacer()
-        if user.id! == event.host {
-          
-          if readyToPick() == true {
-            if event.final_meeting_start == nil {
-              
-              
-              Text("Choose Final Time:")
-                .font(.headline)
-                .foregroundColor(.black)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding()
-              
-              
-              HStack{
-                Text("Select start time:")
-                  .opacity(0.3)
-                DatePicker("", selection: $final_meeting_start)
-              }
-              .padding()
-              .background(Color.gray.opacity(0.1))
-              .cornerRadius(8)
-              
-              HStack{
-                Text("Select end time:")
-                  .opacity(0.3)
-                DatePicker("", selection: $final_meeting_end)
               }.padding()
-                .background(Color.gray.opacity(0.1))
-                .cornerRadius(8)
+              .frame(maxWidth: .infinity, alignment: .leading)
               
-              
-              
-              Button(action: {
-                editFinalTime()
-                updateDB()
-                self.presentationMode.wrappedValue.dismiss()
-              }) {
-                Text("Finish")
-                  .frame(maxWidth: 100)
-                  .padding()
-                  .background(Color.green)
-                  .foregroundColor(.white)
-                  .cornerRadius(.infinity)
-              }
-              .padding()
             }
-          }
+            
+            Spacer()
+            
+            HStack{
+              // MARK: Navigation to other features
+              if let availability = availabilityRepository.getByBoth(user.id ?? "", event.id ?? "") {
+                NavigationLink(
+                  destination: SelectAvailabilityView(user: user, event: event, selectedSlots: availability.times),
+                  label: {
+                    Text("Select Availability")
+                      .foregroundColor(.white)
+                      .padding()
+                      .background(Color.green)
+                      .cornerRadius(.infinity)
+                  })
+              }
+              
+              if event.host == user.id! {
+                NavigationLink(
+                  destination: PeopleTimesView(event: event),
+                  label: {
+                    Text("View All Times")
+                      .foregroundColor(.white)
+                      .padding()
+                      .background(Color.green)
+                      .cornerRadius(.infinity)
+                  })
+              }
+            }.padding()
+            
+            Spacer()
+        }
+        Group {
+            if user.id! == event.host {
+              
+              if readyToPick() == true {
+                if event.final_meeting_start == nil {
+                  
+                  
+                  Text("Choose Final Time:")
+                    .font(.headline)
+                    .foregroundColor(.black)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding()
+                  
+                  
+                  HStack{
+                    Text("Select start time:")
+                      .opacity(0.3)
+                    DatePicker("", selection: $final_meeting_start)
+                  }
+                  .padding()
+                  .background(Color.gray.opacity(0.1))
+                  .cornerRadius(8)
+                  
+                  HStack{
+                    Text("Select end time:")
+                      .opacity(0.3)
+                    DatePicker("", selection: $final_meeting_end)
+                  }.padding()
+                    .background(Color.gray.opacity(0.1))
+                    .cornerRadius(8)
+                  
+                  
+                  
+                  Button(action: {
+                    editFinalTime()
+                    updateDB()
+                    self.presentationMode.wrappedValue.dismiss()
+                  }) {
+                    Text("Finish")
+                      .frame(maxWidth: 100)
+                      .padding()
+                      .background(Color.green)
+                      .foregroundColor(.white)
+                      .cornerRadius(.infinity)
+                  }
+                  .padding()
+                }
+              }
+            }
         }
       }
     }

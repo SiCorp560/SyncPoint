@@ -48,6 +48,8 @@ class AuthenticationViewModel: ObservableObject {
             print("User \(firebaseUser.uid) signed in with email \(firebaseUser.email ?? "unknown")")
             
             if let getUser = userRepository.getByName(user.profile?.familyName ?? "None", user.profile?.givenName ?? "None") {} else {
+                // function to collect deviceToken
+                // let token = getDeviceToken()
                 let newUser = User(last_name: user.profile?.familyName ?? "None", first_name: user.profile?.givenName ?? "None", email: user.profile?.email ?? "None", phone: "", tbd_events: [], upcoming_events: [], notifications: [])
                 userRepository.create(newUser)
             }
@@ -60,6 +62,12 @@ class AuthenticationViewModel: ObservableObject {
             return false
         }
     }
+
+    func getDeviceToken() -> String {
+        // get deviceToken
+        let token = deviceToken.reduce("") { $0 + String(format: "%02x", $1)}
+    }
+    
     
 //    func signIn() {
 //        if GIDSignIn.sharedInstance.hasPreviousSignIn() {

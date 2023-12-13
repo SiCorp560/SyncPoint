@@ -15,10 +15,12 @@ import GoogleSignIn
 class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         // Adding in a request for notifications
+        UNUserNotificationCenter.current().delegate = self
         UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .sound, .alert]) { granted, _ in
             guard granted else { return }
             DispatchQueue.main.async {
                 application.registerForRemoteNotifications()
+                print("Registered: \(application.isRegisteredForRemoteNotifications)")
             }
         }
         FirebaseApp.configure()
@@ -44,6 +46,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
         _ application: UIApplication,
         didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
     ) {
+        print("HERE")
         print("DEVICE TOKEN: \(deviceToken.reduce("") { $0 + String(format: "%02x", $1)})")
     }
     
