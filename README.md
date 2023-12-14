@@ -13,7 +13,7 @@ The New Event and Edit Event views are similar, both allowing the host to fill i
 
 The Event Details view contains less vital but still helpful information, such as the event description. Participants are listed out in more detail, while the final date and time remain TBD until a decision is made by the host. Depending on whether the user is the event host or a regular participant, options to view all other people's times and decide the final time may be present. This also applies to the Edit and Delete options at the top of the screen. Regardless of status, anyone can set their available times via another button.
 
-The Select Availabilities view is a grid full of buttons that can be toggled to indicate availability at certain time slots. Though the small screen may need to be scrolled to access later times in the day, the confirmation button remains at the top for easy access by the user.
+The Select Availabilities view is a grid full of buttons that can be toggled to indicate availability at certain time slots. Though the screen may need to be scrolled to access later times in the day, the confirmation button remains at the top for easy access, in the case that small changes need to be made to one's availability.
 
 The View People's Times view is reserved for the host of an event only. Here, each button in the grid instead pulls up a popover window. This window displays whether each participant is available for that time slot or not. The buttons themselves also indicate this, due to their opacity changing depending on the number of participants who have checked that button on their own views.
 
@@ -29,7 +29,6 @@ User.swift: struct representing a unique person registered with SyncPoint.
 * phone: String variable representing the user's phone number.
 * tbd_events: list of Strings matching the IDs of Events whose final times are not yet established.
 * upcoming_events: list of Strings matching the IDs of Events whose final times are established.
-* notifications: list of notification messages.
 
 Event.swift: struct representing created events organized in SyncPoint.
 * id: unique String variable that identifies the event. Automatically created when event is added to Firebase.
@@ -51,6 +50,8 @@ Availabilities: struct representing the available times of a user for a particul
 We had initially planned to implement access to the user's phone contacts, with that being the way to add participants to an event. However, with the addition of Google sign-in, we realized that accessing phone numbers when users had no guarantee of having a Google email was unreasonable. Instead, we decided to allow all users to be able to add any participant that has been registered on Firebase. The pool for this remains very small thanks to the necessity of a Gmail account.
 
 The Select Availabilities view was intended to let the user drag their finger to select time slots. However, we found ourselves struggling to implement this feature without completely overhauling the existing grid format. Due to time constraints, we decided to scrap this feature.
+
+We tried to implement notifications into our application, however our group ran into trouble accessing our device tokens via the application's sign-in function. Despite our best efforts and research, the application would not properly register for push notifications. We ultimately decided to scrap notifications from the project entirely, with the progress for that feature remaining on the 'notificationsV2' branch of our repository. If we were to continue work on this feature, we would try to connect each user's device token to their information as a new field in the User model. This way, we would be able to send out notifications to each registered device when someone created/updated an event or selected a final time.
 
 ### Testing
 
