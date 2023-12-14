@@ -13,6 +13,8 @@ import FirebaseAuth
 import GoogleSignIn
 
 class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+    var token = ""
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         // Adding in a request for notifications
         UNUserNotificationCenter.current().delegate = self
@@ -34,20 +36,11 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
         return GIDSignIn.sharedInstance.handle(url)
     }
     
-//    // MARK: Remote Notifications
-//    // This method simply allows us to see the device token so we can send PNs with our test server
-//    func application(_ application: UIApplication,
-//                   didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-//        let token = deviceToken.reduce("") { $0 + String(format: "%02x", $1) }
-//        print("Token is \(token)")
-//    }
+    // MARK: Remote Notifications
     @MainActor
-    func application(
-        _ application: UIApplication,
-        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
-    ) {
-        print("HERE")
-        print("DEVICE TOKEN: \(deviceToken.reduce("") { $0 + String(format: "%02x", $1)})")
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        token = deviceToken.reduce("") { $0 + String(format: "%02x", $1)}
+        print("DEVICE TOKEN: \(token)")
     }
     
 }
@@ -60,7 +53,7 @@ struct SyncPointApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     
-    @StateObject var authViewModel = AuthenticationViewModel()
+    @StateObject var authViewModel = AuthenticationViewModel(token: delegate.token)
     
     var body: some Scene {
         WindowGroup {

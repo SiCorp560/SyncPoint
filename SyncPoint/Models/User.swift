@@ -29,7 +29,6 @@ struct User: Identifiable, Comparable, Codable {
         case first_name
         case email
         case phone
-        //case picture
         case tbd_events
         case upcoming_events
         case notifications
